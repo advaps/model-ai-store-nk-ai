@@ -2,6 +2,7 @@ import { Dialog, DialogContent, DialogTitle, DialogDescription } from "@/compone
 import { Button } from "@/components/ui/button";
 import { X } from "lucide-react";
 import { useState, useRef, useEffect } from "react";
+import { useToast } from "@/components/ui/use-toast";
 
 interface VideoModalProps {
   isOpen: boolean;
@@ -12,29 +13,51 @@ interface VideoModalProps {
 
 const VideoModal = ({ isOpen, onClose, videoUrl, title }: VideoModalProps) => {
   const [useNativeControls, setUseNativeControls] = useState(false);
+  const [videoError, setVideoError] = useState(false);
   const videoRef = useRef<HTMLVideoElement>(null);
+  const { toast } = useToast();
 
   // Debug logging
   console.log('VideoModal - videoUrl:', videoUrl);
   console.log('VideoModal - isOpen:', isOpen);
 
-  // Enable native controls immediately for better compatibility
+  // Reset error state and enable controls when modal opens
   useEffect(() => {
     if (isOpen) {
+      setVideoError(false);
       setUseNativeControls(true);
+      
+      // Check if video URL looks like a demo/sample URL (likely to fail)
+      const isDemoUrl = videoUrl.includes('sample-videos.com') || 
+                       videoUrl.includes('user-images.githubusercontent.com') ||
+                       !videoUrl.startsWith('/') && !videoUrl.startsWith('http');
+      
+      if (isDemoUrl) {
+        // Show "Coming Soon" immediately for demo URLs
+        setTimeout(() => {
+          toast({
+            title: "Coming Soon",
+            description: "Demo video functionality will be available soon",
+          });
+          onClose();
+        }, 100);
+        return;
+      }
+      
       // Auto-play when modal opens (muted for browser policy compliance)
       const timer = setTimeout(() => {
         const video = videoRef.current;
-        if (video) {
+        if (video && !videoError) {
           video.play().catch(error => {
             console.log('Auto-play failed, user interaction required:', error);
+            setVideoError(true);
           });
         }
       }, 100);
       
       return () => clearTimeout(timer);
     }
-  }, [isOpen]);
+  }, [isOpen, videoUrl, onClose, toast]);
 
   return (
     <Dialog open={isOpen} onOpenChange={onClose}>
@@ -67,6 +90,12 @@ const VideoModal = ({ isOpen, onClose, videoUrl, title }: VideoModalProps) => {
               onError={(e) => {
                 console.error('Video error:', e);
                 console.error('Video src:', videoUrl);
+                setVideoError(true);
+                toast({
+                  title: "Coming Soon",
+                  description: "Demo video functionality will be available soon",
+                });
+                onClose();
               }}
               onLoadStart={() => console.log('Video loading started')}
               onCanPlay={() => console.log('Video can play')}

@@ -1,6 +1,7 @@
 import { Star, Download, Clock, Tag } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
+import { useState } from "react";
 
 interface ModelCardProps {
   name: string;
@@ -35,6 +36,20 @@ const ModelCard = ({
   onCardClick,
   onInstallClick
 }: ModelCardProps) => {
+  const [imageError, setImageError] = useState(false);
+
+  // Fallback placeholder based on model type
+  const getFallbackImage = () => {
+    if (name.toLowerCase().includes('pose') || name.toLowerCase().includes('blazepose')) {
+      return "https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=400&h=300&fit=crop";
+    } else if (name.toLowerCase().includes('yolor') || name.toLowerCase().includes('detection')) {
+      return "https://images.unsplash.com/photo-1558618047-3c8c76ca7d13?w=400&h=300&fit=crop";
+    } else if (name.toLowerCase().includes('depth') || name.toLowerCase().includes('midas')) {
+      return "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=400&h=300&fit=crop";
+    } else {
+      return "https://images.unsplash.com/photo-1555255707-c07966088b7b?w=400&h=300&fit=crop";
+    }
+  };
   return (
     <div 
       className={`group relative bg-card border rounded-xl overflow-hidden transition-all duration-300 hover:shadow-ai-lg hover:-translate-y-1 cursor-pointer ${
@@ -53,9 +68,10 @@ const ModelCard = ({
       {/* Image - Smaller on mobile */}
       <div className="relative h-36 md:h-48 overflow-hidden bg-ai-muted">
         <img 
-          src={image} 
+          src={imageError ? getFallbackImage() : image} 
           alt={name}
           className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
+          onError={() => setImageError(true)}
         />
         <div className="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent" />
       </div>

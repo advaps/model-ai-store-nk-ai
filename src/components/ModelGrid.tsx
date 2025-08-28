@@ -3,6 +3,13 @@ import ModelDetailModal from "./ModelDetailModal";
 import { useState } from "react";
 import { useToast } from "@/components/ui/use-toast";
 
+// Import preview images
+import yolorPreview from "@/assets/yolor-preview.jpg";
+import midasPreview from "@/assets/midas-preview.jpg";
+import blazeposePreview from "@/assets/blazepose-preview.jpg";
+import efficientdetPreview from "@/assets/efficientdet-preview.jpg";
+import selfieSegmentationPreview from "@/assets/selfie-segmentation-preview.jpg";
+
 interface ModelProps {
   name: string;
   description: string;
@@ -31,11 +38,11 @@ const allModels: ModelProps[] = [
     downloads: "890K",
     category: "Indoor",
     updated: "1 day ago",
-    image: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=400&h=300&fit=crop",
+    image: selfieSegmentationPreview,
     size: "8.2MB",
     detailedDescription: "MediaPipe Selfie Segmentation is a lightweight model that performs real-time person segmentation. It segments the prominent person in the scene from the background, perfect for video calls, AR filters, and background replacement applications.",
     useCases: ["Video conferencing background blur", "AR selfie filters", "Real-time background replacement", "Portrait mode photography"],
-    videoUrl: "https://sample-videos.com/zip/10/mp4/SampleVideo_1280x720_1mb.mp4",
+    videoUrl: "/c2pnet-demo.mp4",
     githubUrl: "https://github.com/PINTO0309/PINTO_model_zoo/tree/main/006_selfie_segmentation",
     features: ["Real-time processing", "Lightweight architecture", "Mobile-optimized", "High accuracy segmentation"],
     modelPath: "selfie_segmentation"
@@ -106,11 +113,11 @@ const allModels: ModelProps[] = [
     downloads: "1.2M",
     category: "Indoor",
     updated: "1 day ago",
-    image: "https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=400&h=300&fit=crop",
+    image: blazeposePreview,
     size: "125MB",
     detailedDescription: "MediaPipe BlazePose is a lightweight convolutional neural network architecture for human pose estimation. Designed for real-time inference with high accuracy for fitness and motion analysis.",
     useCases: ["Fitness tracking", "Sports analysis", "Motion capture", "Yoga pose correction"],
-    videoUrl: "https://user-images.githubusercontent.com/33194443/89726120-c6d0ac80-da4c-11ea-87a3-b1ff59e9c5f9.gif",
+    videoUrl: "/c2pnet-demo.mp4",
     githubUrl: "https://github.com/PINTO0309/PINTO_model_zoo/tree/main/003_posenet",
     features: ["33 keypoint detection", "Real-time performance", "Mobile optimized", "High accuracy tracking"],
     modelPath: "003_posenet"
@@ -240,7 +247,7 @@ const allModels: ModelProps[] = [
     downloads: "1.3M",
     category: "Outdoor",
     updated: "2 days ago",
-    image: "https://images.unsplash.com/photo-1558618047-3c8c76ca7d13?w=400&h=300&fit=crop",
+    image: yolorPreview,
     size: "245MB"
   }
 ];
@@ -253,7 +260,7 @@ const topModels: ModelProps[] = [
     downloads: "2.8M",
     category: "Top Models",
     updated: "1 day ago",
-    image: "https://images.unsplash.com/photo-1558618047-3c8c76ca7d13?w=400&h=300&fit=crop",
+    image: yolorPreview,
     size: "245MB",
     featured: true,
     modelPath: "123_YOLOR"
@@ -265,7 +272,7 @@ const topModels: ModelProps[] = [
     downloads: "2.5M",
     category: "Top Models",
     updated: "1 day ago",
-    image: "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=400&h=300&fit=crop",
+    image: midasPreview,
     size: "105MB",
     featured: true,
     modelPath: "009_multi-scale_local_planar_guidance_for_monocular_depth_estimation"
@@ -277,7 +284,7 @@ const topModels: ModelProps[] = [
     downloads: "2.2M",
     category: "Top Models",
     updated: "1 day ago",
-    image: "https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=400&h=300&fit=crop",
+    image: blazeposePreview,
     size: "2.3GB",
     featured: true,
     modelPath: "003_posenet"
@@ -289,7 +296,7 @@ const topModels: ModelProps[] = [
     downloads: "1.9M",
     category: "Top Models",
     updated: "2 days ago",
-    image: "https://images.unsplash.com/photo-1555255707-c07966088b7b?w=400&h=300&fit=crop",
+    image: efficientdetPreview,
     size: "45MB",
     modelPath: "103_EfficientDet_lite"
   },
