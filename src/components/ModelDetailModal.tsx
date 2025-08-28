@@ -1,7 +1,7 @@
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
-import { Star, Download, Clock, Tag, Play, ExternalLink, Code } from "lucide-react";
+import { Star, Download, Clock, Tag, Play, Code } from "lucide-react";
 import { useToast } from "@/components/ui/use-toast";
 import VideoModal from "@/components/VideoModal";
 import { useState } from "react";
@@ -40,31 +40,25 @@ const ModelDetailModal = ({ isOpen, onClose, model }: ModelDetailModalProps) => 
   const handleDownload = async () => {
     if (!model.modelPath) {
       toast({
-        title: "Error",
-        description: "Model path not found",
-        variant: "destructive",
+        title: "Coming Soon",
+        description: "Model download functionality will be available soon",
       });
       return;
     }
 
-    try {
+    toast({
+      title: "Coming Soon",
+      description: "Model download functionality will be available soon",
+    });
+  };
+
+  const handlePlayDemo = () => {
+    if (model.videoUrl) {
+      setVideoModalOpen(true);
+    } else {
       toast({
-        title: "Download Started",
-        description: `${model.name} model is being downloaded...`,
-      });
-      
-      const { GitHubModelService } = await import('@/utils/GitHubModelService');
-      await GitHubModelService.downloadModelZip(model.modelPath, model.name);
-      
-      toast({
-        title: "Download Complete",
-        description: `${model.name} model downloaded successfully`,
-      });
-    } catch (error) {
-      toast({
-        title: "Download Failed",
-        description: "Failed to download model. Please try again.",
-        variant: "destructive",
+        title: "Coming Soon",
+        description: "Demo video will be available soon",
       });
     }
   };
@@ -96,18 +90,16 @@ const ModelDetailModal = ({ isOpen, onClose, model }: ModelDetailModalProps) => 
                   alt={model.name}
                   className="w-full h-64 object-cover"
                 />
-                {model.videoUrl && (
-                  <div className="absolute inset-0 bg-black/50 flex items-center justify-center">
-                    <Button 
-                      size="lg" 
-                      className="bg-white/20 hover:bg-white/30 backdrop-blur-sm"
-                      onClick={() => setVideoModalOpen(true)}
-                    >
-                      <Play className="h-6 w-6 mr-2" />
-                      Play Demo
-                    </Button>
-                  </div>
-                )}
+                <div className="absolute inset-0 bg-black/50 flex items-center justify-center">
+                  <Button 
+                    size="lg" 
+                    className="bg-white/20 hover:bg-white/30 backdrop-blur-sm"
+                    onClick={handlePlayDemo}
+                  >
+                    <Play className="h-6 w-6 mr-2" />
+                    Play Demo
+                  </Button>
+                </div>
               </div>
               
             </div>
@@ -133,7 +125,7 @@ const ModelDetailModal = ({ isOpen, onClose, model }: ModelDetailModalProps) => 
               </div>
 
               <div className="space-y-2">
-                <Badge variant="secondary">{model.category}</Badge>
+                <Badge variant="secondary">{model.category === "Top Models" ? "Featured" : model.category}</Badge>
               </div>
 
               <p className="text-muted-foreground">{model.description}</p>
@@ -146,14 +138,6 @@ const ModelDetailModal = ({ isOpen, onClose, model }: ModelDetailModalProps) => 
                   <Download className="h-4 w-4 mr-2" />
                   Download Model
                 </Button>
-                {model.githubUrl && (
-                  <Button variant="outline" asChild>
-                    <a href={model.githubUrl} target="_blank" rel="noopener noreferrer">
-                      <ExternalLink className="h-4 w-4 mr-2" />
-                      GitHub
-                    </a>
-                  </Button>
-                )}
               </div>
             </div>
           </div>

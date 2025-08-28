@@ -99,7 +99,7 @@ const ModelCard = ({
         {/* Category and Action - Better mobile layout */}
         <div className="flex items-center justify-between pt-2 gap-2">
           <Badge variant="secondary" className="text-xs flex-shrink-0">
-            {category}
+            {category === "Top Models" ? "Featured" : category}
           </Badge>
           <Button 
             size="sm" 
@@ -109,7 +109,7 @@ const ModelCard = ({
               onInstallClick?.();
             }}
           >
-            Install
+            Download
           </Button>
         </div>
       </div>

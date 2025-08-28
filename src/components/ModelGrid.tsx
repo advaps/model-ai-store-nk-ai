@@ -341,24 +341,40 @@ const topModels: ModelProps[] = [
 
 interface ModelGridProps {
   activeTab: string;
+  searchQuery: string;
 }
 
-const ModelGrid = ({ activeTab }: ModelGridProps) => {
+const ModelGrid = ({ activeTab, searchQuery }: ModelGridProps) => {
   const { toast } = useToast();
   const [selectedModel, setSelectedModel] = useState<ModelProps | null>(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   const getModelsForTab = () => {
+    let models;
     switch (activeTab) {
       case "Indoor":
-        return allModels.filter(model => model.category === "Indoor");
+        models = allModels.filter(model => model.category === "Indoor");
+        break;
       case "Outdoor":
-        return allModels.filter(model => model.category === "Outdoor");
+        models = allModels.filter(model => model.category === "Outdoor");
+        break;
       case "Top Models":
-        return topModels;
+        models = topModels;
+        break;
       default:
-        return [...allModels, ...topModels];
+        models = [...allModels, ...topModels];
     }
+
+    // Apply search filter if searchQuery exists
+    if (searchQuery.trim()) {
+      return models.filter(model => 
+        model.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
+        model.description.toLowerCase().includes(searchQuery.toLowerCase()) ||
+        model.category.toLowerCase().includes(searchQuery.toLowerCase())
+      );
+    }
+
+    return models;
   };
 
   const models = getModelsForTab();
@@ -371,56 +387,21 @@ const ModelGrid = ({ activeTab }: ModelGridProps) => {
   const handleInstallClick = async (model: ModelProps) => {
     if (!model.modelPath) {
       toast({
-        title: "Error",
-        description: "Model path not found",
-        variant: "destructive",
+        title: "Coming Soon",
+        description: "Model download functionality will be available soon",
       });
       return;
     }
 
-    try {
-      toast({
-        title: "Installation Started",
-        description: `${model.name} is being downloaded...`,
-      });
-      
-      const { GitHubModelService } = await import('@/utils/GitHubModelService');
-      await GitHubModelService.downloadModelZip(model.modelPath, model.name);
-      
-      toast({
-        title: "Installation Complete",
-        description: `${model.name} downloaded successfully`,
-      });
-    } catch (error) {
-      toast({
-        title: "Installation Failed",
-        description: "Failed to download model. Please try again.",
-        variant: "destructive",
-      });
-    }
+    toast({
+      title: "Coming Soon",
+      description: "Model download functionality will be available soon",
+    });
   };
-  const sectionTitle = activeTab === "ALL" ? "All AI Models" : 
-                     activeTab === "Indoor" ? "Indoor AI Models" :
-                     activeTab === "Outdoor" ? "Outdoor AI Models" :
-                     "Top AI Models";
-
   return (
     <section className="py-8 md:py-16 bg-background">
       <div className="container mx-auto px-4">
         <div className="space-y-6 md:space-y-8">
-          {/* Section Header */}
-          <div className="text-center space-y-3 md:space-y-4">
-            <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold text-foreground">
-              {sectionTitle}
-            </h2>
-            <p className="text-base md:text-lg text-muted-foreground max-w-2xl mx-auto px-4">
-              {activeTab === "Indoor" ? "AI models optimized for indoor environments and applications" :
-               activeTab === "Outdoor" ? "AI models designed for outdoor, automotive, and surveillance use cases" :
-               activeTab === "Top Models" ? "Most popular and widely-used AI models in the community" :
-               "Comprehensive collection of cutting-edge AI models for all use cases"}
-            </p>
-          </div>
-
           {/* Grid - Responsive columns */}
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 md:gap-6 animate-fade-in">
             {models.map((model, index) => (
@@ -445,12 +426,6 @@ const ModelGrid = ({ activeTab }: ModelGridProps) => {
             model={selectedModel}
           />
 
-          {/* Load More */}
-          <div className="text-center pt-6 md:pt-8">
-            <button className="px-6 md:px-8 py-3 bg-gradient-primary text-white rounded-lg font-medium hover:shadow-ai-glow transition-all duration-300 text-sm md:text-base">
-              Load More Models
-            </button>
-          </div>
         </div>
       </div>
     </section>

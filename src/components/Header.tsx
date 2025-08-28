@@ -1,4 +1,4 @@
-import { Search, Menu, User, X } from "lucide-react";
+import { Search, Menu, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from "@/components/ui/sheet";
@@ -7,9 +7,11 @@ import { useState } from "react";
 interface HeaderProps {
   activeTab: string;
   onTabChange: (tab: string) => void;
+  searchQuery: string;
+  onSearchChange: (query: string) => void;
 }
 
-const Header = ({ activeTab, onTabChange }: HeaderProps) => {
+const Header = ({ activeTab, onTabChange, searchQuery, onSearchChange }: HeaderProps) => {
   const [showMobileSearch, setShowMobileSearch] = useState(false);
 
   const tabs = [
@@ -58,6 +60,8 @@ const Header = ({ activeTab, onTabChange }: HeaderProps) => {
               <Input 
                 placeholder="Search AI models..." 
                 className="pl-10 bg-ai-muted border-border focus:border-primary"
+                value={searchQuery}
+                onChange={(e) => onSearchChange(e.target.value)}
               />
             </div>
           </div>
@@ -72,11 +76,6 @@ const Header = ({ activeTab, onTabChange }: HeaderProps) => {
               onClick={() => setShowMobileSearch(!showMobileSearch)}
             >
               <Search className="h-5 w-5" />
-            </Button>
-            
-            {/* User profile */}
-            <Button variant="ghost" size="icon" className="hidden sm:flex">
-              <User className="h-5 w-5" />
             </Button>
             
             {/* Mobile menu */}
@@ -104,12 +103,6 @@ const Header = ({ activeTab, onTabChange }: HeaderProps) => {
                       {tab.label}
                     </button>
                   ))}
-                  <div className="pt-4">
-                    <Button variant="outline" className="w-full justify-start" size="lg">
-                      <User className="h-5 w-5 mr-2" />
-                      Profile
-                    </Button>
-                  </div>
                 </nav>
               </SheetContent>
             </Sheet>
@@ -124,6 +117,8 @@ const Header = ({ activeTab, onTabChange }: HeaderProps) => {
               <Input 
                 placeholder="Search AI models..." 
                 className="pl-10 bg-ai-muted border-border focus:border-primary"
+                value={searchQuery}
+                onChange={(e) => onSearchChange(e.target.value)}
                 autoFocus
               />
             </div>
