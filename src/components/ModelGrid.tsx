@@ -44,6 +44,7 @@ const allModels: ModelProps[] = [
     useCases: ["Video conferencing background blur", "AR selfie filters", "Real-time background replacement", "Portrait mode photography"],
     videoUrl: "/c2pnet-demo.mp4",
     githubUrl: "https://github.com/PINTO0309/PINTO_model_zoo/tree/main/006_selfie_segmentation",
+    downloadUrl: "https://github.com/PINTO0309/PINTO_model_zoo/raw/main/006_selfie_segmentation/selfie_segmentation.tflite",
     features: ["Real-time processing", "Lightweight architecture", "Mobile-optimized", "High accuracy segmentation"],
     modelPath: "selfie_segmentation"
   },
@@ -119,6 +120,7 @@ const allModels: ModelProps[] = [
     useCases: ["Fitness tracking", "Sports analysis", "Motion capture", "Yoga pose correction"],
     videoUrl: "/c2pnet-demo.mp4",
     githubUrl: "https://github.com/PINTO0309/PINTO_model_zoo/tree/main/003_posenet",
+    downloadUrl: "https://github.com/PINTO0309/PINTO_model_zoo/raw/main/003_posenet/blazepose.tflite",
     features: ["33 keypoint detection", "Real-time performance", "Mobile optimized", "High accuracy tracking"],
     modelPath: "003_posenet"
   },
@@ -157,6 +159,7 @@ const allModels: ModelProps[] = [
     useCases: ["Autonomous drone flight", "Obstacle avoidance", "Aerial photography", "Search and rescue operations"],
     videoUrl: "https://user-images.githubusercontent.com/33194443/90954096-26e32180-e4a2-11ea-8e08-48e6b46e02b8.gif",
     githubUrl: "https://github.com/PINTO0309/PINTO_model_zoo/tree/main/007_mobilenetv2-poseestimation",
+    downloadUrl: "https://github.com/PINTO0309/PINTO_model_zoo/raw/main/116_DroNet/dronet.tflite",
     features: ["Lightweight architecture", "Real-time processing", "Robust outdoor performance", "Low power consumption"],
     modelPath: "116_DroNet"
   },
@@ -207,6 +210,7 @@ const allModels: ModelProps[] = [
     useCases: ["Outdoor photography enhancement", "Surveillance in foggy conditions", "Autonomous driving visibility", "Aerial imaging clarity"],
     videoUrl: "/c2pnet-demo.mp4",
     githubUrl: "https://github.com/PINTO0309/PINTO_model_zoo/tree/main/368_C2PNet",
+    downloadUrl: "https://github.com/PINTO0309/PINTO_model_zoo/raw/main/368_C2PNet/c2pnet.tflite",
     features: ["Physics-aware dehazing", "Contrastive regularization", "Real-time processing", "High quality restoration"],
     modelPath: "368_C2PNet"
   },

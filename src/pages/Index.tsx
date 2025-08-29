@@ -7,6 +7,12 @@ const Index = () => {
   const [activeTab, setActiveTab] = useState("ALL");
   const [searchQuery, setSearchQuery] = useState("");
 
+  // Handle tab change while preserving search
+  const handleTabChange = (tab: string) => {
+    setActiveTab(tab);
+    // Search query is preserved when changing tabs
+  };
+
   return (
     <div className="min-h-screen bg-background">
       <Header 
@@ -15,7 +21,7 @@ const Index = () => {
         searchQuery={searchQuery}
         onSearchChange={setSearchQuery}
       />
-      <CategoryFilter activeTab={activeTab} onTabChange={setActiveTab} />
+      <CategoryFilter activeTab={activeTab} onTabChange={handleTabChange} />
       <ModelGrid activeTab={activeTab} searchQuery={searchQuery} />
     </div>
   );

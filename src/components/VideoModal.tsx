@@ -21,28 +21,26 @@ const VideoModal = ({ isOpen, onClose, videoUrl, title }: VideoModalProps) => {
   console.log('VideoModal - videoUrl:', videoUrl);
   console.log('VideoModal - isOpen:', isOpen);
 
+  // Check if video URL looks like a demo/sample URL (likely to fail)
+  const isDemoUrl = videoUrl.includes('sample-videos.com') || 
+                   videoUrl.includes('user-images.githubusercontent.com') ||
+                   !videoUrl.startsWith('/') && !videoUrl.startsWith('http');
+
   // Reset error state and enable controls when modal opens
   useEffect(() => {
+    if (isOpen && isDemoUrl) {
+      // Show "Coming Soon" immediately for demo URLs and close
+      toast({
+        title: "Coming Soon", 
+        description: "Demo video functionality will be available soon",
+      });
+      onClose();
+      return;
+    }
+    
     if (isOpen) {
       setVideoError(false);
       setUseNativeControls(true);
-      
-      // Check if video URL looks like a demo/sample URL (likely to fail)
-      const isDemoUrl = videoUrl.includes('sample-videos.com') || 
-                       videoUrl.includes('user-images.githubusercontent.com') ||
-                       !videoUrl.startsWith('/') && !videoUrl.startsWith('http');
-      
-      if (isDemoUrl) {
-        // Show "Coming Soon" immediately for demo URLs
-        setTimeout(() => {
-          toast({
-            title: "Coming Soon",
-            description: "Demo video functionality will be available soon",
-          });
-          onClose();
-        }, 100);
-        return;
-      }
       
       // Auto-play when modal opens (muted for browser policy compliance)
       const timer = setTimeout(() => {
@@ -58,6 +56,11 @@ const VideoModal = ({ isOpen, onClose, videoUrl, title }: VideoModalProps) => {
       return () => clearTimeout(timer);
     }
   }, [isOpen, videoUrl, onClose, toast]);
+
+  // Don't render modal content if it's a demo URL
+  if (isDemoUrl) {
+    return null;
+  }
 
   return (
     <Dialog open={isOpen} onOpenChange={onClose}>
