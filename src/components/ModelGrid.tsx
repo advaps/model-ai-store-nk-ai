@@ -39,12 +39,12 @@ const allModels: ModelProps[] = [
     category: "Indoor",
     updated: "1 day ago",
     image: selfieSegmentationPreview,
-    size: "8.2MB",
+    size: "458KB",
     detailedDescription: "MediaPipe Selfie Segmentation is a lightweight model that performs real-time person segmentation. It segments the prominent person in the scene from the background, perfect for video calls, AR filters, and background replacement applications.",
     useCases: ["Video conferencing background blur", "AR selfie filters", "Real-time background replacement", "Portrait mode photography"],
     videoUrl: "/c2pnet-demo.mp4",
     githubUrl: "https://github.com/PINTO0309/PINTO_model_zoo/tree/main/006_selfie_segmentation",
-    downloadUrl: "https://github.com/PINTO0309/PINTO_model_zoo/raw/main/006_selfie_segmentation/selfie_segmentation.tflite",
+    downloadUrl: "/src/assets/selfie_segmentation.tflite",
     features: ["Real-time processing", "Lightweight architecture", "Mobile-optimized", "High accuracy segmentation"],
     modelPath: "selfie_segmentation"
   },
@@ -86,12 +86,14 @@ const allModels: ModelProps[] = [
     category: "Indoor",
     updated: "2 days ago",
     image: "https://images.unsplash.com/photo-1587825140708-dfaf72ae4b04?w=400&h=300&fit=crop",
-    size: "3.1MB",
+    size: "458KB",
     detailedDescription: "Specialized background segmentation model designed for video conferencing applications. Provides precise person-background separation with low computational overhead.",
     useCases: ["Video call background effects", "Virtual meeting rooms", "Privacy protection", "Professional broadcasting"],
     videoUrl: "https://sample-videos.com/zip/10/mp4/SampleVideo_1280x720_1mb.mp4",
-    githubUrl: "https://github.com/PINTO0309/PINTO_model_zoo/tree/main/meet_segmentation",
-    features: ["Meeting-optimized", "Low latency", "High quality segmentation", "Multi-platform support"]
+    githubUrl: "https://huggingface.co/qualcomm/MediaPipe-Selfie-Segmentation",
+    downloadUrl: "/src/assets/selfie_segmentation.tflite",
+    features: ["Meeting-optimized", "Low latency", "High quality segmentation", "Multi-platform support"],
+    modelPath: "meet_segmentation"
   },
   {
     name: "RetinaFace",
@@ -231,8 +233,14 @@ const allModels: ModelProps[] = [
     downloads: "1.5M",
     category: "Outdoor",
     updated: "1 day ago",
-    image: "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=400&h=300&fit=crop",
-    size: "105MB"
+    image: midasPreview,
+    size: "66.3MB",
+    detailedDescription: "Intel's MiDaS v2 model for monocular depth estimation. Computes relative inverse depth from a single image with high accuracy and robustness.",
+    useCases: ["Autonomous driving", "3D scene reconstruction", "AR/VR applications", "Robotics navigation"],
+    githubUrl: "https://github.com/isl-org/MiDaS",
+    downloadUrl: "https://huggingface.co/qualcomm/Midas-V2/resolve/main/Midas-V2.tflite",
+    features: ["Monocular depth estimation", "Robust to various scenes", "Real-time inference", "High accuracy"],
+    modelPath: "midas_v2"
   },
   {
     name: "SFA3D",
@@ -277,9 +285,14 @@ const topModels: ModelProps[] = [
     category: "Top Models",
     updated: "1 day ago",
     image: midasPreview,
-    size: "105MB",
+    size: "66.3MB",
     featured: true,
-    modelPath: "009_multi-scale_local_planar_guidance_for_monocular_depth_estimation"
+    detailedDescription: "Intel's MiDaS v2 model for monocular depth estimation. Computes relative inverse depth from a single image with high accuracy and robustness.",
+    useCases: ["Autonomous driving", "3D scene reconstruction", "AR/VR applications", "Robotics navigation"],
+    githubUrl: "https://github.com/isl-org/MiDaS",
+    downloadUrl: "https://huggingface.co/qualcomm/Midas-V2/resolve/main/Midas-V2.tflite",
+    features: ["Monocular depth estimation", "Robust to various scenes", "Real-time inference", "High accuracy"],
+    modelPath: "midas_v2"
   },
   {
     name: "BlazePose",
@@ -396,7 +409,7 @@ const ModelGrid = ({ activeTab, searchQuery }: ModelGridProps) => {
   };
 
   const handleInstallClick = async (model: ModelProps) => {
-    if (!model.modelPath) {
+    if (!model.downloadUrl) {
       toast({
         title: "Coming Soon",
         description: "Model download functionality will be available soon",
@@ -404,10 +417,26 @@ const ModelGrid = ({ activeTab, searchQuery }: ModelGridProps) => {
       return;
     }
 
-    toast({
-      title: "Coming Soon",
-      description: "Model download functionality will be available soon",
-    });
+    try {
+      // Create a temporary link element to trigger download
+      const link = document.createElement('a');
+      link.href = model.downloadUrl;
+      link.download = `${model.name.replace(/\s+/g, '_').toLowerCase()}.tflite`;
+      link.target = '_blank';
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+
+      toast({
+        title: "Download Started",
+        description: `${model.name} model download has started`,
+      });
+    } catch (error) {
+      toast({
+        title: "Download Failed",
+        description: "Failed to start download. Please try again.",
+      });
+    }
   };
   return (
     <section className="py-8 md:py-16 bg-background">
