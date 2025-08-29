@@ -38,7 +38,7 @@ const ModelDetailModal = ({ isOpen, onClose, model }: ModelDetailModalProps) => 
   if (!model) return null;
 
   const handleDownload = async () => {
-    if (!model.modelPath) {
+    if (!model.downloadUrl) {
       toast({
         title: "Coming Soon",
         description: "Model download functionality will be available soon",
@@ -46,10 +46,30 @@ const ModelDetailModal = ({ isOpen, onClose, model }: ModelDetailModalProps) => 
       return;
     }
 
-    toast({
-      title: "Coming Soon",
-      description: "Model download functionality will be available soon",
-    });
+    try {
+      const link = document.createElement('a');
+      link.href = model.downloadUrl;
+      const isExternal = /^https?:\/\//i.test(model.downloadUrl);
+      if (!isExternal) {
+        link.download = `${model.name.replace(/\s+/g, '_').toLowerCase()}.tflite`;
+      } else {
+        link.target = '_blank';
+        link.rel = 'noopener noreferrer';
+      }
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+
+      toast({
+        title: "Download Started",
+        description: `${model.name} model download has started`,
+      });
+    } catch (error) {
+      toast({
+        title: "Download Failed",
+        description: "Failed to start download. Please try again.",
+      });
+    }
   };
 
   const handlePlayDemo = () => {

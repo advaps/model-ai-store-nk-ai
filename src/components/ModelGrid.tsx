@@ -44,7 +44,7 @@ const allModels: ModelProps[] = [
     useCases: ["Video conferencing background blur", "AR selfie filters", "Real-time background replacement", "Portrait mode photography"],
     videoUrl: "/c2pnet-demo.mp4",
     githubUrl: "https://github.com/PINTO0309/PINTO_model_zoo/tree/main/006_selfie_segmentation",
-    downloadUrl: "/src/assets/selfie_segmentation.tflite",
+    downloadUrl: "/models/selfie_segmentation.tflite",
     features: ["Real-time processing", "Lightweight architecture", "Mobile-optimized", "High accuracy segmentation"],
     modelPath: "selfie_segmentation"
   },
@@ -91,7 +91,7 @@ const allModels: ModelProps[] = [
     useCases: ["Video call background effects", "Virtual meeting rooms", "Privacy protection", "Professional broadcasting"],
     videoUrl: "https://sample-videos.com/zip/10/mp4/SampleVideo_1280x720_1mb.mp4",
     githubUrl: "https://huggingface.co/qualcomm/MediaPipe-Selfie-Segmentation",
-    downloadUrl: "/src/assets/selfie_segmentation.tflite",
+    downloadUrl: "/models/selfie_segmentation.tflite",
     features: ["Meeting-optimized", "Low latency", "High quality segmentation", "Multi-platform support"],
     modelPath: "meet_segmentation"
   },
@@ -419,13 +419,17 @@ const ModelGrid = ({ activeTab, searchQuery }: ModelGridProps) => {
 
     try {
       // Create a temporary link element to trigger download
-      const link = document.createElement('a');
-      link.href = model.downloadUrl;
-      link.download = `${model.name.replace(/\s+/g, '_').toLowerCase()}.tflite`;
-      link.target = '_blank';
-      document.body.appendChild(link);
-      link.click();
-      document.body.removeChild(link);
+      const isExternal = /^https?:\/\//i.test(model.downloadUrl);
+      if (isExternal) {
+        window.open(model.downloadUrl, '_blank', 'noopener,noreferrer');
+      } else {
+        const link = document.createElement('a');
+        link.href = model.downloadUrl;
+        link.download = `${model.name.replace(/\s+/g, '_').toLowerCase()}.tflite`;
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+      }
 
       toast({
         title: "Download Started",
