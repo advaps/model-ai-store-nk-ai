@@ -1,6 +1,6 @@
 import { Dialog, DialogContent, DialogTitle, DialogDescription } from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
-import { X } from "lucide-react";
+import { X, ExternalLink } from "lucide-react";
 import { useState, useRef, useEffect } from "react";
 import { useToast } from "@/components/ui/use-toast";
 
@@ -21,10 +21,19 @@ const VideoModal = ({ isOpen, onClose, videoUrl, title }: VideoModalProps) => {
   console.log('VideoModal - videoUrl:', videoUrl);
   console.log('VideoModal - isOpen:', isOpen);
 
+  // Check if video URL is a YouTube URL
+  const isYouTubeUrl = videoUrl.includes('youtube.com') || videoUrl.includes('youtu.be');
+  
   // Check if video URL looks like a demo/sample URL (likely to fail)
   const isDemoUrl = videoUrl.includes('sample-videos.com') || 
                    videoUrl.includes('user-images.githubusercontent.com') ||
-                   !videoUrl.startsWith('/') && !videoUrl.startsWith('http');
+                   (!videoUrl.startsWith('/') && !videoUrl.startsWith('http') && !isYouTubeUrl);
+
+  // Handle YouTube URLs
+  const handleYouTubeClick = () => {
+    window.open(videoUrl, '_blank', 'noopener,noreferrer');
+    onClose();
+  };
 
   // Reset error state and enable controls when modal opens
   useEffect(() => {
@@ -35,6 +44,12 @@ const VideoModal = ({ isOpen, onClose, videoUrl, title }: VideoModalProps) => {
         description: "Demo video functionality will be available soon",
       });
       onClose();
+      return;
+    }
+    
+    if (isOpen && isYouTubeUrl) {
+      // For YouTube URLs, show the modal with external link option
+      setVideoError(false);
       return;
     }
     
@@ -55,11 +70,42 @@ const VideoModal = ({ isOpen, onClose, videoUrl, title }: VideoModalProps) => {
       
       return () => clearTimeout(timer);
     }
-  }, [isOpen, videoUrl, onClose, toast]);
+  }, [isOpen, videoUrl, onClose, toast, isYouTubeUrl, isDemoUrl]);
 
   // Don't render modal content if it's a demo URL
   if (isDemoUrl) {
     return null;
+  }
+
+  // For YouTube URLs, show a different modal content
+  if (isYouTubeUrl) {
+    return (
+      <Dialog open={isOpen} onOpenChange={onClose}>
+        <DialogContent className="max-w-md p-6" aria-describedby="youtube-description">
+          <DialogTitle className="text-xl font-bold mb-4">Watch Demo Video</DialogTitle>
+          <DialogDescription id="youtube-description" className="mb-6">
+            This demo video is available on YouTube. Click the button below to watch it in a new tab.
+          </DialogDescription>
+          
+          <div className="flex flex-col gap-4">
+            <Button 
+              onClick={handleYouTubeClick}
+              className="bg-red-600 hover:bg-red-700 text-white"
+            >
+              <ExternalLink className="h-4 w-4 mr-2" />
+              Watch on YouTube
+            </Button>
+            
+            <Button 
+              variant="outline" 
+              onClick={onClose}
+            >
+              Cancel
+            </Button>
+          </div>
+        </DialogContent>
+      </Dialog>
+    );
   }
 
   return (
