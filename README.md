@@ -62,7 +62,35 @@ This project is built with:
 
 ## How can I deploy this project?
 
-Simply open [Lovable](https://lovable.dev/projects/48739b07-ff66-40d2-95cd-e6730b822780) and click on Share -> Publish.
+### GitHub Pages Deployment
+
+This project is configured for automatic deployment to GitHub Pages. Here are the deployment options:
+
+#### Automatic Deployment (Recommended)
+1. Push your changes to the `main` or `master` branch
+2. GitHub Actions will automatically build and deploy your site
+3. Your site will be available at: `https://<your-username>.github.io/model-ai-store-nk-ai/`
+
+#### Manual Deployment
+If you prefer manual deployment:
+
+```bash
+# Build the project
+npm run build
+
+# Deploy to GitHub Pages
+npm run deploy
+```
+
+#### Lovable Deployment
+You can also deploy using Lovable by opening [Lovable](https://lovable.dev/projects/48739b07-ff66-40d2-95cd-e6730b822780) and clicking on Share -> Publish.
+
+### GitHub Pages Setup
+To enable GitHub Pages:
+1. Go to your repository settings
+2. Navigate to "Pages" in the sidebar
+3. Under "Source", select "GitHub Actions"
+4. The workflow will automatically deploy your site
 
 ## Can I connect a custom domain to my Lovable project?
 
