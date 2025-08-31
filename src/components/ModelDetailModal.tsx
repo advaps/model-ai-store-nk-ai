@@ -5,6 +5,7 @@ import { Star, Download, Clock, Tag, Play, Code } from "lucide-react";
 import { useToast } from "@/components/ui/use-toast";
 import VideoModal from "@/components/VideoModal";
 import { useState } from "react";
+import { GitHubModelService } from "@/utils/GitHubModelService";
 
 interface ModelDetailProps {
   name: string;
@@ -38,6 +39,49 @@ const ModelDetailModal = ({ isOpen, onClose, model }: ModelDetailModalProps) => 
   if (!model) return null;
 
   const handleDownload = async () => {
+    // If model has a modelPath, try to download from PINTO model zoo
+    if (model.modelPath) {
+      try {
+        toast({
+          title: "Searching for model...",
+          description: "Looking for TFLite files in PINTO model zoo",
+        });
+
+        const hasTFLite = await GitHubModelService.hasTFLiteFiles(model.modelPath);
+        
+        if (!hasTFLite) {
+          toast({
+            title: "Coming Soon",
+            description: "TFLite model files are not available yet. Check back soon!",
+          });
+          return;
+        }
+
+        const { modelFiles } = await GitHubModelService.findModelFiles(model.modelPath);
+        const tfliteFiles = modelFiles.filter(file => file.name.endsWith('.tflite'));
+
+        // Download the first available TFLite file
+        const tfliteFile = tfliteFiles[0];
+        await GitHubModelService.downloadModelFile(
+          tfliteFile.path, 
+          `${model.name.replace(/\s+/g, '_').toLowerCase()}.tflite`
+        );
+
+        toast({
+          title: "Download Started",
+          description: `${model.name} TFLite model download has started`,
+        });
+      } catch (error) {
+        console.error('Download error:', error);
+        toast({
+          title: "Download Failed",
+          description: "Failed to download model. Please try again.",
+        });
+      }
+      return;
+    }
+
+    // Fallback to existing downloadUrl logic
     if (!model.downloadUrl) {
       toast({
         title: "Coming Soon",

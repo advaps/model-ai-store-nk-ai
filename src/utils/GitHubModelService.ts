@@ -33,6 +33,10 @@ export class GitHubModelService {
     try {
       const response = await fetch(`${this.BASE_API_URL}/contents/${modelPath}`);
       if (!response.ok) {
+        if (response.status === 404) {
+          console.warn(`Model directory not found: ${modelPath}`);
+          return [];
+        }
         throw new Error(`Failed to fetch model directory: ${response.statusText}`);
       }
       return await response.json();
@@ -130,6 +134,16 @@ export class GitHubModelService {
     } catch (error) {
       console.error('Error downloading model:', error);
       throw error;
+    }
+  }
+
+  static async hasTFLiteFiles(modelPath: string): Promise<boolean> {
+    try {
+      const { modelFiles } = await this.findModelFiles(modelPath);
+      return modelFiles.some(file => file.name.endsWith('.tflite'));
+    } catch (error) {
+      console.error('Error checking TFLite files:', error);
+      return false;
     }
   }
 }
