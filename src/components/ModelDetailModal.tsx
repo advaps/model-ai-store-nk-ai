@@ -81,39 +81,40 @@ const ModelDetailModal = ({ isOpen, onClose, model }: ModelDetailModalProps) => 
       return;
     }
 
-    // Fallback to existing downloadUrl logic
-    if (!model.downloadUrl) {
-      toast({
-        title: "Coming Soon",
-        description: "Model download functionality will be available soon",
-      });
+    // Check if model has a direct download URL
+    if (model.downloadUrl) {
+      try {
+        const link = document.createElement('a');
+        link.href = model.downloadUrl;
+        const isExternal = /^https?:\/\//i.test(model.downloadUrl);
+        if (!isExternal) {
+          link.download = `${model.name.replace(/\s+/g, '_').toLowerCase()}.tflite`;
+        } else {
+          link.target = '_blank';
+          link.rel = 'noopener noreferrer';
+        }
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+
+        toast({
+          title: "Download Started",
+          description: `${model.name} model download has started`,
+        });
+      } catch (error) {
+        toast({
+          title: "Download Failed",
+          description: "Failed to start download. Please try again.",
+        });
+      }
       return;
     }
 
-    try {
-      const link = document.createElement('a');
-      link.href = model.downloadUrl;
-      const isExternal = /^https?:\/\//i.test(model.downloadUrl);
-      if (!isExternal) {
-        link.download = `${model.name.replace(/\s+/g, '_').toLowerCase()}.tflite`;
-      } else {
-        link.target = '_blank';
-        link.rel = 'noopener noreferrer';
-      }
-      document.body.appendChild(link);
-      link.click();
-      document.body.removeChild(link);
-
-      toast({
-        title: "Download Started",
-        description: `${model.name} model download has started`,
-      });
-    } catch (error) {
-      toast({
-        title: "Download Failed",
-        description: "Failed to start download. Please try again.",
-      });
-    }
+    // If no download URL or model path, show coming soon message
+    toast({
+      title: "Coming Soon",
+      description: "Model download functionality will be available soon",
+    });
   };
 
   const handlePlayDemo = () => {

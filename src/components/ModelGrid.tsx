@@ -3,6 +3,7 @@ import ModelDetailModal from "./ModelDetailModal";
 import { useState } from "react";
 import { useToast } from "@/components/ui/use-toast";
 import { GitHubModelService } from "@/utils/GitHubModelService";
+import { tfliteModelsData } from "@/data/tfliteModelsData";
 
 // Import preview images
 import yolorPreview from "@/assets/yolor-preview.jpg";
@@ -31,13 +32,16 @@ interface ModelProps {
 }
 
 const allModels: ModelProps[] = [
-  // Indoor Models (Prioritized - small size, with videos/details)
+  // TFLite Models from CSV
+  ...tfliteModelsData,
+  
+  // Keep some existing models for variety
   {
     name: "Selfie Segmentation",
     description: "Real-time person segmentation for video calls and filters",
     rating: 4.7,
     downloads: "890K",
-    category: "Indoor",
+    category: "Segmentation",
     updated: "1 day ago",
     image: selfieSegmentationPreview,
     size: "458KB",
@@ -452,39 +456,40 @@ const ModelGrid = ({ activeTab, searchQuery }: ModelGridProps) => {
       return;
     }
 
-    // Fallback to existing downloadUrl logic
-    if (!model.downloadUrl) {
-      toast({
-        title: "Coming Soon",
-        description: "Model download functionality will be available soon",
-      });
+    // Check if model has a direct download URL
+    if (model.downloadUrl) {
+      try {
+        // Create a temporary link element to trigger download
+        const isExternal = /^https?:\/\//i.test(model.downloadUrl);
+        if (isExternal) {
+          window.open(model.downloadUrl, '_blank', 'noopener,noreferrer');
+        } else {
+          const link = document.createElement('a');
+          link.href = model.downloadUrl;
+          link.download = `${model.name.replace(/\s+/g, '_').toLowerCase()}.tflite`;
+          document.body.appendChild(link);
+          link.click();
+          document.body.removeChild(link);
+        }
+
+        toast({
+          title: "Download Started",
+          description: `${model.name} model download has started`,
+        });
+      } catch (error) {
+        toast({
+          title: "Download Failed",
+          description: "Failed to start download. Please try again.",
+        });
+      }
       return;
     }
 
-    try {
-      // Create a temporary link element to trigger download
-      const isExternal = /^https?:\/\//i.test(model.downloadUrl);
-      if (isExternal) {
-        window.open(model.downloadUrl, '_blank', 'noopener,noreferrer');
-      } else {
-        const link = document.createElement('a');
-        link.href = model.downloadUrl;
-        link.download = `${model.name.replace(/\s+/g, '_').toLowerCase()}.tflite`;
-        document.body.appendChild(link);
-        link.click();
-        document.body.removeChild(link);
-      }
-
-      toast({
-        title: "Download Started",
-        description: `${model.name} model download has started`,
-      });
-    } catch (error) {
-      toast({
-        title: "Download Failed",
-        description: "Failed to start download. Please try again.",
-      });
-    }
+    // If no download URL or model path, show coming soon message
+    toast({
+      title: "Coming Soon",
+      description: "Model download functionality will be available soon",
+    });
   };
   return (
     <section className="py-8 md:py-16 bg-background">

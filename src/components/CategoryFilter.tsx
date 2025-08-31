@@ -8,8 +8,13 @@ interface CategoryFilterProps {
 const CategoryFilter = ({ activeTab, onTabChange }: CategoryFilterProps) => {
   const tabs = [
     { id: "ALL", label: "All" },
-    { id: "Indoor", label: "Indoor" },
-    { id: "Outdoor", label: "Outdoor" },
+    { id: "Classification", label: "Classification" },
+    { id: "Detection", label: "Detection" },
+    { id: "Segmentation", label: "Segmentation" },
+    { id: "Pose", label: "Pose" },
+    { id: "Face", label: "Face" },
+    { id: "Hand", label: "Hand" },
+    { id: "Specialized", label: "Specialized" },
     { id: "Top Models", label: "Top Models" },
   ];
 
