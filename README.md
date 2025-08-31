@@ -69,7 +69,7 @@ This project is configured for automatic deployment to GitHub Pages. Here are th
 #### Automatic Deployment (Recommended)
 1. Push your changes to the `main` or `master` branch
 2. GitHub Actions will automatically build and deploy your site
-3. Your site will be available at: `https://<your-username>.github.io/model-ai-store-nk-ai/`
+3. Your site will be available at: `https://aimodelstore.in/`
 
 #### Manual Deployment
 If you prefer manual deployment:
