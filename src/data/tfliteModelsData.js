@@ -22,6 +22,24 @@ export const tfliteModelsData = [
     demoReference: "MediaPipe Face Detection"
   },
   {
+    name: "ANPR (Automatic Number Plate Recognition)",
+    description: "Advanced traffic monitoring system that automatically reads and recognizes vehicle license plates for traffic management and law enforcement.",
+    image: getLocalModelImage("ANPR (Automatic Number Plate Recognition)"),
+    videoUrl: getLocalModelVideo("ANPR (Automatic Number Plate Recognition)"),
+    downloadUrl: "./assets/number_plate_recog.tflite",
+    rating: 4.2,
+    downloads: "45K",
+    category: "Outdoor",
+    updated: "2 days ago",
+    size: "4.1MB",
+    featured: false,
+    detailedDescription: "Advanced traffic monitoring system that automatically reads and recognizes vehicle license plates for traffic management and law enforcement. This TFLite model provides real-time license plate detection and recognition capabilities.",
+    useCases: ["ANPR (automatic number plate recognition)", "Traffic monitoring", "Law enforcement", "Parking management", "Toll collection", "Security surveillance"],
+    features: ["Real-time detection", "High accuracy OCR", "Mobile optimized", "Lightweight TFLite model", "Multi-platform support"],
+    githubUrl: "https://github.com/ultralytics/yolov5",
+    demoReference: "Number Plate Recognition Demo"
+  },
+  {
     name: "Multi-factor Access System",
     description: "AI-powered multi-factor authentication system combining face recognition, badge detection, and gesture analysis for enhanced security access control.",
     image: getLocalModelImage("Multi-factor Access System"),
@@ -544,24 +562,6 @@ export const tfliteModelsData = [
     features: ["AI monitoring", "Real-time detection", "Safety enhancement", "Smart alerts"],
     githubUrl: null,
     demoReference: "Not Available"
-  },
-  {
-    name: "ANPR (Automatic Number Plate Recognition)",
-    description: "Advanced traffic monitoring system that automatically reads and recognizes vehicle license plates for traffic management and law enforcement.",
-    image: getLocalModelImage("ANPR (Automatic Number Plate Recognition)"),
-    videoUrl: getLocalModelVideo("ANPR (Automatic Number Plate Recognition)"),
-    downloadUrl: "./assets/number_plate_recog.tflite",
-    rating: 4.2,
-    downloads: "45K",
-    category: "Outdoor",
-    updated: "2 days ago",
-    size: "4.1MB",
-    featured: false,
-    detailedDescription: "Advanced traffic monitoring system that automatically reads and recognizes vehicle license plates for traffic management and law enforcement. This TFLite model provides real-time license plate detection and recognition capabilities.",
-    useCases: ["ANPR (automatic number plate recognition)", "Traffic monitoring", "Law enforcement", "Parking management", "Toll collection", "Security surveillance"],
-    features: ["Real-time detection", "High accuracy OCR", "Mobile optimized", "Lightweight TFLite model", "Multi-platform support"],
-    githubUrl: "https://github.com/ultralytics/yolov5",
-    demoReference: "Number Plate Recognition Demo"
   },
   {
     name: "Speeding Vehicle Detection",
