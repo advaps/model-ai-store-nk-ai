@@ -51,6 +51,9 @@ import streetlightOutageDetection from "@/assets/streetlight-outage-detection.jp
 import weatherAnomalyDetectionUnique from "@/assets/weather-anomaly-detection-unique.jpg";
 import heroAi from "@/assets/hero-ai.jpg";
 
+// Import video files
+import mediapipeDemo from "@/assets/mediapipe_demo.mp4";
+
 // Local image mapping for all 50 TFLite models
 export const localImageMapping = {
   // Indoor Models
@@ -111,4 +114,15 @@ export const localImageMapping = {
 // Function to get local image for a model
 export const getLocalModelImage = (modelName) => {
   return localImageMapping[modelName] || heroAi; // Fallback to hero image
+};
+
+// Local video mapping for demo videos
+export const localVideoMapping = {
+  "MediaPipe FaceDetector": mediapipeDemo,
+  // Add more video mappings as needed
+};
+
+// Function to get local video for a model
+export const getLocalModelVideo = (modelName) => {
+  return localVideoMapping[modelName] || null;
 };

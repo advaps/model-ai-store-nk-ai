@@ -21,11 +21,16 @@ const VideoModal = ({ isOpen, onClose, videoUrl, title }: VideoModalProps) => {
   console.log('VideoModal - videoUrl:', videoUrl);
   console.log('VideoModal - isOpen:', isOpen);
 
+  // If no video URL is provided, don't render anything
+  if (!videoUrl) {
+    return null;
+  }
+
   // Check if video URL is a YouTube URL
   const isYouTubeUrl = videoUrl.includes('youtube.com') || videoUrl.includes('youtu.be');
   
-  // Check if video URL is a local asset
-  const isLocalAsset = videoUrl.startsWith('./assets/') || videoUrl.startsWith('/assets/') || videoUrl.startsWith('assets/');
+  // Check if video URL is a local asset (either relative path or Vite-imported URL)
+  const isLocalAsset = videoUrl.startsWith('./assets/') || videoUrl.startsWith('/assets/') || videoUrl.startsWith('assets/') || videoUrl.includes('/assets/');
   
   // Check if video URL looks like a demo/sample URL (likely to fail)
   const isDemoUrl = videoUrl.includes('sample-videos.com') || 

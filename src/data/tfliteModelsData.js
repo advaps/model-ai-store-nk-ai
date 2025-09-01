@@ -1,5 +1,5 @@
 // TFLite Models Data converted from CSV
-import { getLocalModelImage } from './localImageMapping.js';
+import { getLocalModelImage, getLocalModelVideo } from './localImageMapping.js';
 
 export const tfliteModelsData = [
   // Indoor Models
@@ -7,7 +7,7 @@ export const tfliteModelsData = [
     name: "MediaPipe FaceDetector",
     description: "Face detection TFLite model optimized for real-time recognition.",
     image: getLocalModelImage("MediaPipe FaceDetector"),
-    videoUrl: "./assets/mediapipe_demo.mp4",
+    videoUrl: getLocalModelVideo("MediaPipe FaceDetector"),
     downloadUrl: "./assets/MediaPipeFaceDetector.tflite",
     rating: 4.5,
     downloads: "850K",
