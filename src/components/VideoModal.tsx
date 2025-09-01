@@ -32,6 +32,9 @@ const VideoModal = ({ isOpen, onClose, videoUrl, title }: VideoModalProps) => {
   // Check if video URL is a local asset (either relative path or Vite-imported URL)
   const isLocalAsset = videoUrl.startsWith('./assets/') || videoUrl.startsWith('/assets/') || videoUrl.startsWith('assets/') || videoUrl.includes('/assets/');
   
+  // Check if the file is a GIF (should be displayed as image)
+  const isGif = videoUrl.toLowerCase().endsWith('.gif');
+  
   // Check if video URL looks like a demo/sample URL (likely to fail)
   const isDemoUrl = videoUrl.includes('sample-videos.com') || 
                    videoUrl.includes('user-images.githubusercontent.com') ||
@@ -86,6 +89,49 @@ const VideoModal = ({ isOpen, onClose, videoUrl, title }: VideoModalProps) => {
     return null;
   }
   
+  // For GIF files, show as image (GIFs auto-play and loop)
+  if (isGif) {
+    return (
+      <Dialog open={isOpen} onOpenChange={onClose}>
+        <DialogContent className="max-w-4xl p-0 bg-black" aria-describedby="gif-description">
+          <DialogTitle className="sr-only">{title} Demo GIF</DialogTitle>
+          <DialogDescription id="gif-description" className="sr-only">
+            Demo GIF for {title} model showing its capabilities and functionality
+          </DialogDescription>
+          
+          <div className="relative">
+            <Button
+              variant="ghost"
+              size="icon"
+              className="absolute top-2 right-2 z-10 text-white hover:bg-white/20"
+              onClick={onClose}
+            >
+              <X className="h-4 w-4" />
+            </Button>
+
+            <div className="relative bg-black min-h-[400px] flex items-center justify-center">
+              <img
+                src={videoUrl}
+                alt={`${title} Demo`}
+                className="w-full max-h-[70vh] object-contain"
+                onError={(e) => {
+                  console.error('GIF error:', e);
+                  console.error('GIF src:', videoUrl);
+                  setVideoError(true);
+                  toast({
+                    title: "GIF Error",
+                    description: "Unable to load the GIF. Please try again later.",
+                  });
+                  onClose();
+                }}
+              />
+            </div>
+          </div>
+        </DialogContent>
+      </Dialog>
+    );
+  }
+
   // For local assets and external URLs, show the video player
   if (isLocalAsset || videoUrl.startsWith('http')) {
     return (

@@ -53,6 +53,7 @@ import heroAi from "@/assets/hero-ai.jpg";
 
 // Import video files
 import mediapipeDemo from "@/assets/mediapipe_demo.mp4";
+import numberPlateRecognitionGif from "@/assets/number_plate_recognition.gif";
 
 // Local image mapping for all 50 TFLite models
 export const localImageMapping = {
@@ -119,6 +120,7 @@ export const getLocalModelImage = (modelName) => {
 // Local video mapping for demo videos
 export const localVideoMapping = {
   "MediaPipe FaceDetector": mediapipeDemo,
+  "ANPR (Automatic Number Plate Recognition)": numberPlateRecognitionGif,
   // Add more video mappings as needed
 };
 
