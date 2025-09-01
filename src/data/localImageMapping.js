@@ -23,7 +23,7 @@ import deskOccupancyTracking from "@/assets/desk-occupancy-tracking.jpg";
 import meetingRoomUtilization from "@/assets/meeting-room-utilization-monitoring.jpg";
 import peopleCountingCoworking from "@/assets/people-counting-for-coworking-spaces.jpg";
 import employeePostureFocus from "@/assets/employee-posturefocus-analysis.jpg";
-import ppeSafetyDetection from "@/assets/ppe-safety-detection.jpg";
+import safetyGearDetectionUnique from "@/assets/safety-gear-detection-unique.jpg";
 import perimeterSecurity from "@/assets/perimeter-security.jpg";
 import weaponDetectionSecurity from "@/assets/weapon-detection-security.jpg";
 import suspiciousLoiteringAlert from "@/assets/suspicious-loitering-alert.jpg";
@@ -39,14 +39,16 @@ import glassBreakingDetection from "@/assets/glassbreaking-sound-detection.jpg";
 import fireworkExplosionDetection from "@/assets/fireworkexplosion-detection.jpg";
 import crowdDensityMonitoring from "@/assets/crowd-density-monitoring.jpg";
 import publicProtestMonitoring from "@/assets/public-protestrally-monitoring.jpg";
+import ppeComplianceMonitoring from "@/assets/ppe-compliance-monitoring.jpg";
 import unsafeWorkerBehavior from "@/assets/unsafe-worker-behavior-detection.jpg";
 import forkliftCollisionRisk from "@/assets/forkliftmachine-collision-risk-alerts.jpg";
 import workerFatigueFixed from "@/assets/worker-fatigue-fixed.jpg";
 import smokeFireConstruction from "@/assets/smokefire-at-construction-site.jpg";
 import garbageOverflowDetection from "@/assets/garbage-overflow-detection.jpg";
-import environmentalMonitoring from "@/assets/environmental-monitoring.jpg";
+import waterloggingFloodDetectionUnique from "@/assets/waterlogging-flood-detection-unique.jpg";
 import wildAnimalIntrusion from "@/assets/wild-animal-intrusion-detection.jpg";
 import streetlightOutageDetection from "@/assets/streetlight-outage-detection.jpg";
+import weatherAnomalyDetectionUnique from "@/assets/weather-anomaly-detection-unique.jpg";
 import heroAi from "@/assets/hero-ai.jpg";
 
 // Local image mapping for all 50 TFLite models
@@ -76,7 +78,7 @@ export const localImageMapping = {
   "Meeting Room Utilization Monitoring": meetingRoomUtilization,
   "People Counting for Co-working Spaces": peopleCountingCoworking,
   "Employee Posture/Focus Analysis": employeePostureFocus,
-  "Safety Gear Detection": ppeSafetyDetection,
+  "Safety Gear Detection": safetyGearDetectionUnique,
   
   // Outdoor Models
   "Intrusion Detection (Perimeter Breach)": perimeterSecurity,
@@ -94,16 +96,16 @@ export const localImageMapping = {
   "Firework/Explosion Detection": fireworkExplosionDetection,
   "Crowd Density Monitoring": crowdDensityMonitoring,
   "Public Protest/Rally Monitoring": publicProtestMonitoring,
-  "PPE Compliance Detection": ppeSafetyDetection,
+  "PPE Compliance Detection": ppeComplianceMonitoring,
   "Unsafe Worker Behavior Detection": unsafeWorkerBehavior,
   "Forklift/Machine Collision Risk Alerts": forkliftCollisionRisk,
   "Worker Fatigue Monitoring": workerFatigueFixed,
   "Smoke/Fire at Construction Site": smokeFireConstruction,
   "Garbage Overflow Detection": garbageOverflowDetection,
-  "Waterlogging/Flood Detection": environmentalMonitoring,
+  "Waterlogging/Flood Detection": waterloggingFloodDetectionUnique,
   "Wild Animal Intrusion Detection": wildAnimalIntrusion,
   "Streetlight Outage Detection": streetlightOutageDetection,
-  "Weather Anomaly Detection": environmentalMonitoring
+  "Weather Anomaly Detection": weatherAnomalyDetectionUnique
 };
 
 // Function to get local image for a model
