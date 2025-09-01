@@ -124,6 +124,25 @@ const Header = ({ activeTab, onTabChange, searchQuery, onSearchChange }: HeaderP
             </div>
           </div>
         )}
+
+        {/* Mobile Category Navigation */}
+        <div className="lg:hidden border-t border-border">
+          <div className="flex items-center gap-2 py-3 overflow-x-auto scrollbar-hide px-4">
+            {tabs.map((tab) => (
+              <button
+                key={tab.id}
+                onClick={() => onTabChange(tab.id)}
+                className={`flex items-center space-x-2 whitespace-nowrap flex-shrink-0 min-w-fit px-4 py-2 rounded-lg text-sm font-medium transition-colors ${
+                  activeTab === tab.id
+                    ? "bg-primary text-primary-foreground shadow-md"
+                    : "bg-muted text-muted-foreground hover:bg-muted/80"
+                }`}
+              >
+                {tab.label}
+              </button>
+            ))}
+          </div>
+        </div>
       </div>
     </header>
   );

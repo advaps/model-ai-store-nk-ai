@@ -1,0 +1,25 @@
+Scenario,Model Name,Download Link,Description,Demo/Reference,Category,Requested Name
+Door/Window open detection,DoorOpenDetection TFLite model,https://github.com/hkrob/DoorOpenDetectionTFlite,Custom TFLite model trained via Teachable Machine to detect door open/closed states.,GitHub hkrob/DoorOpenDetectionTFlite,Indoor,Door open detect
+Firework/explosion detection,Not Available,Not Available,No public TFLite model found for this scenario.,Not Available,Outdoor,Fire detect
+Stove/induction left-on detection,Not Available,Not Available,No public TFLite model found for this scenario.,Not Available,Indoor,Stove induction
+Short-circuit/sparking detection,Not Available,Not Available,No public TFLite model found for this scenario.,Not Available,Indoor,Short circuit
+Overheating appliance detection,Not Available,Not Available,No public TFLite model found for this scenario.,Not Available,Indoor,Overheating app
+Child unattended near balcony/window,Not Available,Not Available,No public TFLite model found for this scenario.,Not Available,Indoor,Child unattended
+Elderly wandering at night,Not Available,Not Available,No public TFLite model found for this scenario.,Not Available,Indoor,Elderly wandering
+Intrusion alert during night mode,Anomaly Detection TFLite,https://github.com/francescogrillea/AnomalyDetectionTFLite,"Anomaly detection model using TensorFlow Lite, suitable for intrusion.",GitHub francescogrillea/AnomalyDetectionTFLite,Indoor,Anomaly detection
+Desk occupancy tracking,Not Available,Not Available,No public TFLite model found for this scenario.,Not Available,Indoor,Desk occupancy
+Meeting room utilization monitoring,Not Available,Not Available,No public TFLite model found for this scenario.,Not Available,Indoor,Meeting room utilization
+People counting for co-working spaces,Not Available,Not Available,No public TFLite model found for this scenario.,Not Available,Indoor,People counting
+Employee posture/focus analysis,Not Available,Not Available,No public TFLite model found for this scenario.,Not Available,Indoor,Employee posture
+Suspicious loitering alert,Not Available,Not Available,No public TFLite model found for this scenario.,Not Available,Outdoor,Suspicious behavior
+Crowd aggression detection,Not Available,Not Available,No public TFLite model found for this scenario.,Not Available,Outdoor,Crowd aggression detection
+Parking space occupancy detection,Not Available,Not Available,No public TFLite model found for this scenario.,Not Available,Outdoor,Parking space occupancy
+Glass-breaking sound detection,Not Available,Not Available,No public TFLite model found for this scenario.,Not Available,Outdoor,Glass breaking sound
+Firework/explosion detection,Not Available,Not Available,No public TFLite model found for this scenario.,Not Available,Outdoor,Firework explosion
+Crowd aggression detection,Not Available,Not Available,No public TFLite model found for this scenario.,Not Available,Outdoor,Crowd density
+Public protest/rally monitoring,Not Available,Not Available,No public TFLite model found for this scenario.,Not Available,Outdoor,Public protest
+Unsafe worker behavior detection,Not Available,Not Available,No public TFLite model found for this scenario.,Not Available,Outdoor,Unsafe worker
+Forklift/machine collision risk alerts,Not Available,Not Available,No public TFLite model found for this scenario.,Not Available,Outdoor,Forklift machine collision
+Smoke/fire detection in kitchen,Fire Detection CNN (edwios),https://github.com/edwios/fire-detection-cnn-tflite,TensorFlow Lite CNN for fire/smoke detection.,GitHub edwios/fire-detection-cnn-tflite,Indoor,Smoke/fire detection
+Garbage overflow detection in bins,Not Available,Not Available,No public TFLite model found for this scenario.,Not Available,Outdoor,Garbage overflow
+Streetlight outage detection,Not Available,Not Available,No public TFLite model found for this scenario.,Not Available,Outdoor,Streetlight outage detection
