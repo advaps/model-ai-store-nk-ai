@@ -9,45 +9,21 @@ import heartAttackDetection from "@/assets/heart-attack-detection.jpg";
 import sleepPatternMonitoring from "@/assets/sleep-pattern-monitoring.jpg";
 import babyCryDetection from "@/assets/baby-cry-detection.jpg";
 import suddenCollapseDetection from "@/assets/sudden-collapse-detection.jpg";
-import fireDetectionCnn from "@/assets/fire-detection-cnn.jpg";
 import gasLeakDetectionFixed from "@/assets/gas-leak-detection-fixed.jpg";
-import stoveInductionDetection from "@/assets/stoveinduction-lefton-detection.jpg";
-import shortCircuitDetection from "@/assets/shortcircuitsparking-detection.jpg";
-import overheatingApplianceDetection from "@/assets/overheating-appliance-detection.jpg";
-import childUnattendedDetection from "@/assets/child-unattended-detection.jpg";
 import petMonitoringFixed from "@/assets/pet-monitoring-fixed.jpg";
-import elderlyWanderingDetection from "@/assets/elderly-wandering-detection.jpg";
-import anomalyDetectionTflite from "@/assets/anomaly-detection-tflite.jpg";
 import occupancyMonitoringFixed from "@/assets/occupancy-monitoring-fixed.jpg";
-import deskOccupancyTracking from "@/assets/desk-occupancy-tracking.jpg";
-import meetingRoomUtilization from "@/assets/meeting-room-utilization-monitoring.jpg";
-import peopleCountingCoworking from "@/assets/people-counting-for-coworking-spaces.jpg";
-import employeePostureFocus from "@/assets/employee-posturefocus-analysis.jpg";
 import safetyGearDetectionUnique from "@/assets/safety-gear-detection-unique.jpg";
 import perimeterSecurity from "@/assets/perimeter-security.jpg";
 import weaponDetectionSecurity from "@/assets/weapon-detection-security.jpg";
-import suspiciousLoiteringAlert from "@/assets/suspicious-loitering-alert.jpg";
 import abandonedObjectDetection from "@/assets/abandoned-object-detection.jpg";
-import crowdAggressionDetection from "@/assets/crowd-aggression-detection.jpg";
 import vehicleDetectionTraffic from "@/assets/vehicle-detection-traffic.jpg";
 import speedingVehicleDetection from "@/assets/speeding-vehicle-detection.jpg";
 import wrongWayDrivingDetection from "@/assets/wrongway-driving-detection.jpg";
-import parkingSpaceOccupancy from "@/assets/parking-space-occupancy-detection.jpg";
 import vehicleTypeClassification from "@/assets/vehicle-type-classification.jpg";
 import gunshotAcousticDetection from "@/assets/gunshot-acoustic-detection.jpg";
-import glassBreakingDetection from "@/assets/glassbreaking-sound-detection.jpg";
-import fireworkExplosionDetection from "@/assets/fireworkexplosion-detection.jpg";
-import crowdDensityMonitoring from "@/assets/crowd-density-monitoring.jpg";
-import publicProtestMonitoring from "@/assets/public-protestrally-monitoring.jpg";
-import ppeComplianceMonitoring from "@/assets/ppe-compliance-monitoring.jpg";
-import unsafeWorkerBehavior from "@/assets/unsafe-worker-behavior-detection.jpg";
-import forkliftCollisionRisk from "@/assets/forkliftmachine-collision-risk-alerts.jpg";
 import workerFatigueFixed from "@/assets/worker-fatigue-fixed.jpg";
-import smokeFireConstruction from "@/assets/smokefire-at-construction-site.jpg";
-import garbageOverflowDetection from "@/assets/garbage-overflow-detection.jpg";
 import waterloggingFloodDetectionUnique from "@/assets/waterlogging-flood-detection-unique.jpg";
 import wildAnimalIntrusion from "@/assets/wild-animal-intrusion-detection.jpg";
-import streetlightOutageDetection from "@/assets/streetlight-outage-detection.jpg";
 import weatherAnomalyDetectionUnique from "@/assets/weather-anomaly-detection-unique.jpg";
 import heroAi from "@/assets/hero-ai.jpg";
 
@@ -55,7 +31,31 @@ import heroAi from "@/assets/hero-ai.jpg";
 import mediapipeDemo from "@/assets/mediapipe_demo.mp4";
 import numberPlateRecognitionGif from "@/assets/number_plate_recognition.gif";
 
-// Import scenario images - using existing assets for now
+// Import scenario images - converted from PNG to JPEG
+import doorOpenDetect from "@/assets/door-open-detect.jpg";
+import fireDetect from "@/assets/fire-detect.jpg";
+import stoveInduction from "@/assets/stove-induction.jpg";
+import shortCircuit from "@/assets/short-circuit.jpg";
+import overheatingApp from "@/assets/overheating-app.jpg";
+import childUnattended from "@/assets/child-unattended.jpg";
+import elderlyWandering from "@/assets/elderly-wandering.jpg";
+import anomalyDetection from "@/assets/anomaly-detection.jpg";
+import deskOccupancy from "@/assets/desk-occupancy.jpg";
+import meetingRoomUtilization from "@/assets/meeting-room-utilization.jpg";
+import peopleCounting from "@/assets/people-counting.jpg";
+import employeePosture from "@/assets/employee-posture.jpg";
+import suspiciousBehavior from "@/assets/suspicious-behavior.jpg";
+import crowdAggressionDetection from "@/assets/crowd-aggression-detection.jpg";
+import parkingSpaceOccupancy from "@/assets/parking-space-occupancy.jpg";
+import glassBreakingSound from "@/assets/glass-breaking-sound.jpg";
+import fireworkExplosion from "@/assets/firework-explosion.jpg";
+import crowdDensity from "@/assets/crowd-density.jpg";
+import publicProtest from "@/assets/public-protest.jpg";
+import unsafeWorker from "@/assets/unsafe-worker.jpg";
+import forkliftMachineCollision from "@/assets/forklift-machine-collision.jpg";
+import smokeFireDetection from "@/assets/smoke-fire-detection.jpg";
+import garbageOverflow from "@/assets/garbage-overflow.jpg";
+import streetlightOutageDetection from "@/assets/streetlight-outage-detection.jpg";
 
 // Local image mapping for all 50 TFLite models
 export const localImageMapping = {
@@ -70,26 +70,26 @@ export const localImageMapping = {
   "Sleep Pattern Monitoring": sleepPatternMonitoring,
   "Cry Detection": babyCryDetection,
   "Sudden Collapse Detection": suddenCollapseDetection,
-  "Fire Detection CNN": fireDetectionCnn,
+  "Fire Detection CNN": fireDetect,
   "Gas Leakage Detection": gasLeakDetectionFixed,
-  "Stove/Induction Left-on Detection": stoveInductionDetection,
-  "Short-circuit/Sparking Detection": shortCircuitDetection,
-  "Overheating Appliance Detection": overheatingApplianceDetection,
-  "Child Unattended Detection": childUnattendedDetection,
+  "Stove/Induction Left-on Detection": stoveInduction,
+  "Short-circuit/Sparking Detection": shortCircuit,
+  "Overheating Appliance Detection": overheatingApp,
+  "Child Unattended Detection": childUnattended,
   "Pet Activity Monitoring": petMonitoringFixed,
-  "Elderly Wandering Detection": elderlyWanderingDetection,
-  "Anomaly Detection TFLite": anomalyDetectionTflite,
+  "Elderly Wandering Detection": elderlyWandering,
+  "Anomaly Detection TFLite": anomalyDetection,
   "Smart Occupancy Monitoring": occupancyMonitoringFixed,
-  "Desk Occupancy Tracking": deskOccupancyTracking,
+  "Desk Occupancy Tracking": deskOccupancy,
   "Meeting Room Utilization Monitoring": meetingRoomUtilization,
-  "People Counting for Co-working Spaces": peopleCountingCoworking,
-  "Employee Posture/Focus Analysis": employeePostureFocus,
+  "People Counting for Co-working Spaces": peopleCounting,
+  "Employee Posture/Focus Analysis": employeePosture,
   "Safety Gear Detection": safetyGearDetectionUnique,
   
   // Outdoor Models
   "Intrusion Detection (Perimeter Breach)": perimeterSecurity,
   "Weapon Detection": weaponDetectionSecurity,
-  "Suspicious Loitering Alert": suspiciousLoiteringAlert,
+  "Suspicious Loitering Alert": suspiciousBehavior,
   "Abandoned Object Detection": abandonedObjectDetection,
   "Crowd Aggression Detection": crowdAggressionDetection,
   "ANPR (Automatic Number Plate Recognition)": vehicleDetectionTraffic,
@@ -98,16 +98,16 @@ export const localImageMapping = {
   "Parking Space Occupancy Detection": parkingSpaceOccupancy,
   "Vehicle Type Classification": vehicleTypeClassification,
   "Gunshot Detection": gunshotAcousticDetection,
-  "Glass-breaking Sound Detection": glassBreakingDetection,
-  "Firework/Explosion Detection": fireworkExplosionDetection,
-  "Crowd Density Monitoring": crowdDensityMonitoring,
-  "Public Protest/Rally Monitoring": publicProtestMonitoring,
-  "PPE Compliance Detection": ppeComplianceMonitoring,
-  "Unsafe Worker Behavior Detection": unsafeWorkerBehavior,
-  "Forklift/Machine Collision Risk Alerts": forkliftCollisionRisk,
+  "Glass-breaking Sound Detection": glassBreakingSound,
+  "Firework/Explosion Detection": fireworkExplosion,
+  "Crowd Density Monitoring": crowdDensity,
+  "Public Protest/Rally Monitoring": publicProtest,
+  "PPE Compliance Detection": safetyGearDetectionUnique, // Using safety gear detection image
+  "Unsafe Worker Behavior Detection": unsafeWorker, // Using unsafe worker image
+  "Forklift/Machine Collision Risk Alerts": forkliftMachineCollision,
   "Worker Fatigue Monitoring": workerFatigueFixed,
-  "Smoke/Fire at Construction Site": smokeFireConstruction,
-  "Garbage Overflow Detection": garbageOverflowDetection,
+  "Smoke/Fire at Construction Site": smokeFireDetection, // Using smoke fire detection image
+  "Garbage Overflow Detection": garbageOverflow,
   "Waterlogging/Flood Detection": waterloggingFloodDetectionUnique,
   "Wild Animal Intrusion Detection": wildAnimalIntrusion,
   "Streetlight Outage Detection": streetlightOutageDetection,
