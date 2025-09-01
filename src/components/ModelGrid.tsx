@@ -28,7 +28,7 @@ interface ModelProps {
 // Use only the models from tfliteModelsData
 const allModels: ModelProps[] = tfliteModelsData;
 
-// Top Models - select from both Indoor and Outdoor categories, but avoid duplicates
+// Top Models - Only MediaPipe and ANPR models
 const topModels: ModelProps[] = [
   {
     name: "MediaPipe FaceDetector",
@@ -47,68 +47,20 @@ const topModels: ModelProps[] = [
     demoReference: "MediaPipe Face Detection"
   },
   {
-    name: "SSD Lite MobileNet-V1 Quantized (COCO)",
-    description: "General object detection model, can detect people for stranger alerts.",
-    rating: 4.4,
-    downloads: "1.1M",
+    name: "ANPR (Automatic Number Plate Recognition)",
+    description: "Advanced traffic monitoring system that automatically reads and recognizes vehicle license plates for traffic management and law enforcement.",
+    rating: 4.2,
+    downloads: "45K",
     category: "Top Models",
     updated: "2 days ago",
     image: "https://images.unsplash.com/photo-1449965408869-eaa3f722e40d?w=400&h=300&fit=crop",
-    size: "18MB",
+    size: "4.1MB",
     featured: true,
-    detailedDescription: "General object detection model, can detect people for stranger alerts.",
-    useCases: ["Stranger alert (unknown person entry)", "Object detection", "Surveillance", "Security systems"],
-    features: ["Real-time detection", "Multi-object support", "High precision", "Robust performance"],
-    githubUrl: null,
-    demoReference: "TensorFlow sample model"
-  },
-  {
-    name: "Fall Detection Model",
-    description: "TFLite model for recognizing elderly falls.",
-    rating: 4.6,
-    downloads: "680K",
-    category: "Top Models",
-    updated: "2 days ago",
-    image: "https://images.unsplash.com/photo-1571741755707-5d25de3b6cb2?w=400&h=300&fit=crop",
-    size: "12MB",
-    featured: true,
-    detailedDescription: "TFLite model for recognizing elderly falls.",
-    useCases: ["Fall detection (elderly care)", "Healthcare monitoring", "Safety systems", "Elderly care"],
-    features: ["Fall detection", "Real-time monitoring", "High accuracy", "Healthcare focused"],
-    githubUrl: "https://huggingface.co/Siddhartha276/Fall_Detection",
-    demoReference: "Hugging Face Siddhartha276"
-  },
-  {
-    name: "Fire Detection CNN",
-    description: "TensorFlow Lite CNN for fire/smoke detection.",
-    rating: 4.4,
-    downloads: "520K",
-    category: "Top Models",
-    updated: "4 days ago",
-    image: "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=400&h=300&fit=crop",
-    size: "8MB",
-    featured: true,
-    detailedDescription: "TensorFlow Lite CNN for fire/smoke detection.",
-    useCases: ["Smoke/fire detection in kitchen", "Fire safety", "Surveillance", "Emergency detection"],
-    features: ["CNN architecture", "Fire/smoke detection", "Real-time monitoring", "High accuracy"],
-    githubUrl: "https://github.com/edwios/fire-detection-cnn-tflite",
-    demoReference: "GitHub edwios/fire-detection-cnn-tflite"
-  },
-  {
-    name: "Anomaly Detection TFLite",
-    description: "Anomaly detection model using TensorFlow Lite, suitable for intrusion.",
-    rating: 4.3,
-    downloads: "380K",
-    category: "Top Models",
-    updated: "1 week ago",
-    image: "https://images.unsplash.com/photo-1449965408869-eaa3f722e40d?w=400&h=300&fit=crop",
-    size: "22MB",
-    featured: true,
-    detailedDescription: "Anomaly detection model using TensorFlow Lite, suitable for intrusion.",
-    useCases: ["Intrusion alert during night mode", "Anomaly detection", "Security systems", "Surveillance"],
-    features: ["Anomaly detection", "Intrusion detection", "Real-time monitoring", "High accuracy"],
-    githubUrl: "https://github.com/francescogrillea/AnomalyDetectionTFlite",
-    demoReference: "GitHub francescogrillea/AnomalyDetectionTFlite"
+    detailedDescription: "Advanced traffic monitoring system that automatically reads and recognizes vehicle license plates for traffic management and law enforcement. This TFLite model provides real-time license plate detection and recognition capabilities.",
+    useCases: ["ANPR (automatic number plate recognition)", "Traffic monitoring", "Law enforcement", "Parking management", "Toll collection", "Security surveillance"],
+    features: ["Real-time detection", "High accuracy OCR", "Mobile optimized", "Lightweight TFLite model", "Multi-platform support"],
+    githubUrl: "https://github.com/ultralytics/yolov5",
+    demoReference: "Number Plate Recognition Demo"
   }
 ];
 
