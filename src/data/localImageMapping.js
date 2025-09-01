@@ -2,6 +2,7 @@
 import faceDetectionAi from "@/assets/face-detection-ai.jpg";
 import multifactorAccessFixed from "@/assets/multifactor-access-fixed.jpg";
 import objectDetectionCoco from "@/assets/object-detection-coco.jpg";
+import doorOpenDetection from "@/assets/dooropendetection-tflite.jpg";
 import packageDeliveryDetection from "@/assets/package-delivery-detection.jpg";
 import fallDetectionHealthcare from "@/assets/fall-detection-healthcare.jpg";
 import heartAttackDetection from "@/assets/heart-attack-detection.jpg";
@@ -55,7 +56,6 @@ import mediapipeDemo from "@/assets/mediapipe_demo.mp4";
 import numberPlateRecognitionGif from "@/assets/number_plate_recognition.gif";
 
 // Import scenario images - using existing assets for now
-import doorOpenDetect from "@/assets/door-open-detect.png";
 
 // Local image mapping for all 50 TFLite models
 export const localImageMapping = {
@@ -63,7 +63,7 @@ export const localImageMapping = {
   "MediaPipe FaceDetector": faceDetectionAi,
   "Multi-factor Access System": multifactorAccessFixed,
   "SSD Lite MobileNet-V1 Quantized (COCO)": objectDetectionCoco,
-  "DoorOpenDetection TFLite": doorOpenDetect,
+  "DoorOpenDetection TFLite": doorOpenDetection,
   "Custom Object Detector (Model Maker)": packageDeliveryDetection,
   "Fall Detection Model": fallDetectionHealthcare,
   "Heart-attack/Abnormal Motion Alert": heartAttackDetection,
