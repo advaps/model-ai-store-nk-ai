@@ -1,10 +1,91 @@
 // TFLite Models Data converted from CSV
+
+// Function to generate appropriate images for each model type
+const getModelImage = (name, category) => {
+  const lowerName = name.toLowerCase();
+  
+  // Face detection models
+  if (lowerName.includes('face') || lowerName.includes('facedetector')) {
+    return "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&h=300&fit=crop";
+  }
+  
+  // Security and surveillance models
+  if (lowerName.includes('intrusion') || lowerName.includes('anomaly') || lowerName.includes('surveillance')) {
+    return "https://images.unsplash.com/photo-1449965408869-eaa3f722e40d?w=400&h=300&fit=crop";
+  }
+  
+  // Healthcare and monitoring models
+  if (lowerName.includes('fall') || lowerName.includes('health') || lowerName.includes('elderly') || lowerName.includes('sleep')) {
+    return "https://images.unsplash.com/photo-1571741755707-5d25de3b6cb2?w=400&h=300&fit=crop";
+  }
+  
+  // Child and pet monitoring
+  if (lowerName.includes('child') || lowerName.includes('cry') || lowerName.includes('pet')) {
+    return "https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=400&h=300&fit=crop";
+  }
+  
+  // Fire and safety models
+  if (lowerName.includes('fire') || lowerName.includes('smoke') || lowerName.includes('gas')) {
+    return "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=400&h=300&fit=crop";
+  }
+  
+  // Door and access control
+  if (lowerName.includes('door') || lowerName.includes('access') || lowerName.includes('unlock')) {
+    return "https://images.unsplash.com/photo-1559827260-dc66d52bef19?w=400&h=300&fit=crop";
+  }
+  
+  // Object detection models
+  if (lowerName.includes('object') || lowerName.includes('detection') || lowerName.includes('ssd') || lowerName.includes('mobilenet')) {
+    return "https://images.unsplash.com/photo-1449965408869-eaa3f722e40d?w=400&h=300&fit=crop";
+  }
+  
+  // Traffic and vehicle models
+  if (lowerName.includes('vehicle') || lowerName.includes('traffic') || lowerName.includes('parking') || lowerName.includes('anpr')) {
+    return "https://images.unsplash.com/photo-1449824913935-59a10b8d2000?w=400&h=300&fit=crop";
+  }
+  
+  // Construction and industrial safety
+  if (lowerName.includes('construction') || lowerName.includes('worker') || lowerName.includes('ppe') || lowerName.includes('industrial')) {
+    return "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=400&h=300&fit=crop";
+  }
+  
+  // Crowd and public safety
+  if (lowerName.includes('crowd') || lowerName.includes('public') || lowerName.includes('protest')) {
+    return "https://images.unsplash.com/photo-1449965408869-eaa3f722e40d?w=400&h=300&fit=crop";
+  }
+  
+  // Weather and environmental
+  if (lowerName.includes('weather') || lowerName.includes('flood') || lowerName.includes('waterlogging')) {
+    return "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=400&h=300&fit=crop";
+  }
+  
+  // Wildlife and animal detection
+  if (lowerName.includes('animal') || lowerName.includes('wild')) {
+    return "https://images.unsplash.com/photo-1449965408869-eaa3f722e40d?w=400&h=300&fit=crop";
+  }
+  
+  // Infrastructure monitoring
+  if (lowerName.includes('streetlight') || lowerName.includes('infrastructure')) {
+    return "https://images.unsplash.com/photo-1449965408869-eaa3f722e40d?w=400&h=300&fit=crop";
+  }
+  
+  // Default images based on category
+  if (category === "Indoor") {
+    return "https://images.unsplash.com/photo-1559827260-dc66d52bef19?w=400&h=300&fit=crop";
+  } else if (category === "Outdoor") {
+    return "https://images.unsplash.com/photo-1449965408869-eaa3f722e40d?w=400&h=300&fit=crop";
+  }
+  
+  // Fallback image
+  return "https://images.unsplash.com/photo-1516116216624-53e697fedbea?w=400&h=300&fit=crop";
+};
+
 export const tfliteModelsData = [
   // Indoor Models
   {
     name: "MediaPipe FaceDetector",
     description: "Face detection TFLite model optimized for real-time recognition.",
-    image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&h=300&fit=crop",
+    image: getModelImage("MediaPipe FaceDetector", "Indoor"),
     videoUrl: null,
     downloadUrl: "https://huggingface.co/qualcomm/MediaPipe-Face-Detection/blob/main/FaceDetector.tflite",
     rating: 4.5,
@@ -22,7 +103,7 @@ export const tfliteModelsData = [
   {
     name: "Multi-factor Access System",
     description: "No public TFLite model found for this scenario.",
-    image: "https://images.unsplash.com/photo-1559827260-dc66d52bef19?w=400&h=300&fit=crop",
+    image: getModelImage("Multi-factor Access System", "Indoor"),
     videoUrl: null,
     downloadUrl: null,
     rating: 0,
@@ -40,7 +121,7 @@ export const tfliteModelsData = [
   {
     name: "SSD Lite MobileNet-V1 Quantized (COCO)",
     description: "General object detection model, can detect people for stranger alerts.",
-    image: "https://images.unsplash.com/photo-1449965408869-eaa3f722e40d?w=400&h=300&fit=crop",
+    image: getModelImage("SSD Lite MobileNet-V1 Quantized (COCO)", "Indoor"),
     videoUrl: null,
     downloadUrl: "https://storage.googleapis.com/download.tensorflow.org/models/tflite/coco_ssd_mobilenet_v1_1.0_quant_2018_06_29.zip",
     rating: 4.4,
@@ -58,7 +139,7 @@ export const tfliteModelsData = [
   {
     name: "DoorOpenDetection TFLite",
     description: "Custom TFLite model trained via Teachable Machine to detect door open/closed states.",
-    image: "https://images.unsplash.com/photo-1559827260-dc66d52bef19?w=400&h=300&fit=crop",
+    image: getModelImage("DoorOpenDetection TFLite", "Indoor"),
     videoUrl: null,
     downloadUrl: "https://github.com/hkrob/DoorOpenDetectionTFlite",
     rating: 4.2,
@@ -76,7 +157,7 @@ export const tfliteModelsData = [
   {
     name: "Custom Object Detector (Model Maker)",
     description: "Custom-trained detector using EfficientDet-Lite models for package/person detection.",
-    image: "https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=400&h=300&fit=crop",
+    image: getModelImage("Custom Object Detector (Model Maker)", "Indoor"),
     videoUrl: null,
     downloadUrl: "https://github.com/TannerGilbert/TFLite-Object-Detection-with-TFLite-Model-Maker",
     rating: 4.3,
@@ -94,7 +175,7 @@ export const tfliteModelsData = [
   {
     name: "Fall Detection Model",
     description: "TFLite model for recognizing elderly falls.",
-    image: "https://images.unsplash.com/photo-1571741755707-5d25de3b6cb2?w=400&h=300&fit=crop",
+    image: getModelImage("Fall Detection Model", "Indoor"),
     videoUrl: null,
     downloadUrl: "https://huggingface.co/Siddhartha276/Fall_Detection/blob/main/fall_detection_model.tflite",
     rating: 4.6,
@@ -112,7 +193,7 @@ export const tfliteModelsData = [
   {
     name: "Heart-attack/Abnormal Motion Alert",
     description: "No public TFLite model found for this scenario.",
-    image: "https://images.unsplash.com/photo-1571741755707-5d25de3b6cb2?w=400&h=300&fit=crop",
+    image: getModelImage("Heart-attack/Abnormal Motion Alert", "Indoor"),
     videoUrl: null,
     downloadUrl: null,
     rating: 0,
@@ -130,7 +211,7 @@ export const tfliteModelsData = [
   {
     name: "Sleep Pattern Monitoring",
     description: "No public TFLite model found for this scenario.",
-    image: "https://images.unsplash.com/photo-1571741755707-5d25de3b6cb2?w=400&h=300&fit=crop",
+    image: getModelImage("Sleep Pattern Monitoring", "Indoor"),
     videoUrl: null,
     downloadUrl: null,
     rating: 0,
@@ -148,7 +229,7 @@ export const tfliteModelsData = [
   {
     name: "Cry Detection",
     description: "No public TFLite model found for this scenario.",
-    image: "https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=400&h=300&fit=crop",
+    image: getModelImage("Cry Detection", "Indoor"),
     videoUrl: null,
     downloadUrl: null,
     rating: 0,
@@ -166,7 +247,7 @@ export const tfliteModelsData = [
   {
     name: "Sudden Collapse Detection",
     description: "No public TFLite model found for this scenario.",
-    image: "https://images.unsplash.com/photo-1571741755707-5d25de3b6cb2?w=400&h=300&fit=crop",
+    image: getModelImage("Sudden Collapse Detection", "Indoor"),
     videoUrl: null,
     downloadUrl: null,
     rating: 0,
@@ -184,7 +265,7 @@ export const tfliteModelsData = [
   {
     name: "Fire Detection CNN",
     description: "TensorFlow Lite CNN for fire/smoke detection.",
-    image: "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=400&h=300&fit=crop",
+    image: getModelImage("Fire Detection CNN", "Indoor"),
     videoUrl: null,
     downloadUrl: "https://github.com/edwios/fire-detection-cnn-tflite",
     rating: 4.4,
@@ -202,7 +283,7 @@ export const tfliteModelsData = [
   {
     name: "Gas Leakage Detection",
     description: "No public TFLite model found for this scenario.",
-    image: "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=400&h=300&fit=crop",
+    image: getModelImage("Gas Leakage Detection", "Indoor"),
     videoUrl: null,
     downloadUrl: null,
     rating: 0,
@@ -220,7 +301,7 @@ export const tfliteModelsData = [
   {
     name: "Stove/Induction Left-on Detection",
     description: "No public TFLite model found for this scenario.",
-    image: "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=400&h=300&fit=crop",
+    image: getModelImage("Stove/Induction Left-on Detection", "Indoor"),
     videoUrl: null,
     downloadUrl: null,
     rating: 0,
@@ -238,7 +319,7 @@ export const tfliteModelsData = [
   {
     name: "Short-circuit/Sparking Detection",
     description: "No public TFLite model found for this scenario.",
-    image: "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=400&h=300&fit=crop",
+    image: getModelImage("Short-circuit/Sparking Detection", "Indoor"),
     videoUrl: null,
     downloadUrl: null,
     rating: 0,
@@ -256,7 +337,7 @@ export const tfliteModelsData = [
   {
     name: "Overheating Appliance Detection",
     description: "No public TFLite model found for this scenario.",
-    image: "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=400&h=300&fit=crop",
+    image: getModelImage("Overheating Appliance Detection", "Indoor"),
     videoUrl: null,
     downloadUrl: null,
     rating: 0,
@@ -274,7 +355,7 @@ export const tfliteModelsData = [
   {
     name: "Child Unattended Detection",
     description: "No public TFLite model found for this scenario.",
-    image: "https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=400&h=300&fit=crop",
+    image: getModelImage("Child Unattended Detection", "Indoor"),
     videoUrl: null,
     downloadUrl: null,
     rating: 0,
@@ -292,7 +373,7 @@ export const tfliteModelsData = [
   {
     name: "Pet Activity Monitoring",
     description: "No public TFLite model found for this scenario.",
-    image: "https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=400&h=300&fit=crop",
+    image: getModelImage("Pet Activity Monitoring", "Indoor"),
     videoUrl: null,
     downloadUrl: null,
     rating: 0,
@@ -310,7 +391,7 @@ export const tfliteModelsData = [
   {
     name: "Elderly Wandering Detection",
     description: "No public TFLite model found for this scenario.",
-    image: "https://images.unsplash.com/photo-1571741755707-5d25de3b6cb2?w=400&h=300&fit=crop",
+    image: getModelImage("Elderly Wandering Detection", "Indoor"),
     videoUrl: null,
     downloadUrl: null,
     rating: 0,
@@ -328,7 +409,7 @@ export const tfliteModelsData = [
   {
     name: "Anomaly Detection TFLite",
     description: "Anomaly detection model using TensorFlow Lite, suitable for intrusion.",
-    image: "https://images.unsplash.com/photo-1449965408869-eaa3f722e40d?w=400&h=300&fit=crop",
+    image: getModelImage("Anomaly Detection TFLite", "Indoor"),
     videoUrl: null,
     downloadUrl: "https://github.com/francescogrillea/AnomalyDetectionTFlite",
     rating: 4.3,
@@ -346,7 +427,7 @@ export const tfliteModelsData = [
   {
     name: "Smart Occupancy Monitoring",
     description: "No public TFLite model found for this scenario.",
-    image: "https://images.unsplash.com/photo-1449965408869-eaa3f722e40d?w=400&h=300&fit=crop",
+    image: getModelImage("Smart Occupancy Monitoring", "Indoor"),
     videoUrl: null,
     downloadUrl: null,
     rating: 0,
@@ -364,7 +445,7 @@ export const tfliteModelsData = [
   {
     name: "Desk Occupancy Tracking",
     description: "No public TFLite model found for this scenario.",
-    image: "https://images.unsplash.com/photo-1449965408869-eaa3f722e40d?w=400&h=300&fit=crop",
+    image: getModelImage("Desk Occupancy Tracking", "Indoor"),
     videoUrl: null,
     downloadUrl: null,
     rating: 0,
@@ -382,7 +463,7 @@ export const tfliteModelsData = [
   {
     name: "Meeting Room Utilization Monitoring",
     description: "No public TFLite model found for this scenario.",
-    image: "https://images.unsplash.com/photo-1449965408869-eaa3f722e40d?w=400&h=300&fit=crop",
+    image: getModelImage("Meeting Room Utilization Monitoring", "Indoor"),
     videoUrl: null,
     downloadUrl: null,
     rating: 0,
@@ -400,7 +481,7 @@ export const tfliteModelsData = [
   {
     name: "People Counting for Co-working Spaces",
     description: "No public TFLite model found for this scenario.",
-    image: "https://images.unsplash.com/photo-1449965408869-eaa3f722e40d?w=400&h=300&fit=crop",
+    image: getModelImage("People Counting for Co-working Spaces", "Indoor"),
     videoUrl: null,
     downloadUrl: null,
     rating: 0,
@@ -418,7 +499,7 @@ export const tfliteModelsData = [
   {
     name: "Employee Posture/Focus Analysis",
     description: "No public TFLite model found for this scenario.",
-    image: "https://images.unsplash.com/photo-1449965408869-eaa3f722e40d?w=400&h=300&fit=crop",
+    image: getModelImage("Employee Posture/Focus Analysis", "Indoor"),
     videoUrl: null,
     downloadUrl: null,
     rating: 0,
@@ -436,7 +517,7 @@ export const tfliteModelsData = [
   {
     name: "Safety Gear Detection",
     description: "No public TFLite model found for this scenario.",
-    image: "https://images.unsplash.com/photo-1449965408869-eaa3f722e40d?w=400&h=300&fit=crop",
+    image: getModelImage("Safety Gear Detection", "Indoor"),
     videoUrl: null,
     downloadUrl: null,
     rating: 0,
@@ -456,7 +537,7 @@ export const tfliteModelsData = [
   {
     name: "Intrusion Detection (Perimeter Breach)",
     description: "No public TFLite model found for this scenario.",
-    image: "https://images.unsplash.com/photo-1449965408869-eaa3f722e40d?w=400&h=300&fit=crop",
+    image: getModelImage("Intrusion Detection (Perimeter Breach)", "Outdoor"),
     videoUrl: null,
     downloadUrl: null,
     rating: 0,
@@ -474,7 +555,7 @@ export const tfliteModelsData = [
   {
     name: "Weapon Detection",
     description: "No public TFLite model found for this scenario.",
-    image: "https://images.unsplash.com/photo-1449965408869-eaa3f722e40d?w=400&h=300&fit=crop",
+    image: getModelImage("Weapon Detection", "Outdoor"),
     videoUrl: null,
     downloadUrl: null,
     rating: 0,
@@ -492,7 +573,7 @@ export const tfliteModelsData = [
   {
     name: "Suspicious Loitering Alert",
     description: "No public TFLite model found for this scenario.",
-    image: "https://images.unsplash.com/photo-1449965408869-eaa3f722e40d?w=400&h=300&fit=crop",
+    image: getModelImage("Suspicious Loitering Alert", "Outdoor"),
     videoUrl: null,
     downloadUrl: null,
     rating: 0,
@@ -510,7 +591,7 @@ export const tfliteModelsData = [
   {
     name: "Abandoned Object Detection",
     description: "No public TFLite model found for this scenario.",
-    image: "https://images.unsplash.com/photo-1449965408869-eaa3f722e40d?w=400&h=300&fit=crop",
+    image: getModelImage("Abandoned Object Detection", "Outdoor"),
     videoUrl: null,
     downloadUrl: null,
     rating: 0,
@@ -528,7 +609,7 @@ export const tfliteModelsData = [
   {
     name: "Crowd Aggression Detection",
     description: "No public TFLite model found for this scenario.",
-    image: "https://images.unsplash.com/photo-1449965408869-eaa3f722e40d?w=400&h=300&fit=crop",
+    image: getModelImage("Crowd Aggression Detection", "Outdoor"),
     videoUrl: null,
     downloadUrl: null,
     rating: 0,
@@ -546,7 +627,7 @@ export const tfliteModelsData = [
   {
     name: "ANPR (Automatic Number Plate Recognition)",
     description: "No public TFLite model found for this scenario.",
-    image: "https://images.unsplash.com/photo-1449965408869-eaa3f722e40d?w=400&h=300&fit=crop",
+    image: getModelImage("ANPR (Automatic Number Plate Recognition)", "Outdoor"),
     videoUrl: null,
     downloadUrl: null,
     rating: 0,
@@ -564,7 +645,7 @@ export const tfliteModelsData = [
   {
     name: "Speeding Vehicle Detection",
     description: "No public TFLite model found for this scenario.",
-    image: "https://images.unsplash.com/photo-1449965408869-eaa3f722e40d?w=400&h=300&fit=crop",
+    image: getModelImage("Speeding Vehicle Detection", "Outdoor"),
     videoUrl: null,
     downloadUrl: null,
     rating: 0,
@@ -582,7 +663,7 @@ export const tfliteModelsData = [
   {
     name: "Wrong-way Driving Detection",
     description: "No public TFLite model found for this scenario.",
-    image: "https://images.unsplash.com/photo-1449965408869-eaa3f722e40d?w=400&h=300&fit=crop",
+    image: getModelImage("Wrong-way Driving Detection", "Outdoor"),
     videoUrl: null,
     downloadUrl: null,
     rating: 0,
@@ -600,7 +681,7 @@ export const tfliteModelsData = [
   {
     name: "Parking Space Occupancy Detection",
     description: "No public TFLite model found for this scenario.",
-    image: "https://images.unsplash.com/photo-1449965408869-eaa3f722e40d?w=400&h=300&fit=crop",
+    image: getModelImage("Parking Space Occupancy Detection", "Outdoor"),
     videoUrl: null,
     downloadUrl: null,
     rating: 0,
@@ -618,7 +699,7 @@ export const tfliteModelsData = [
   {
     name: "Vehicle Type Classification",
     description: "No public TFLite model found for this scenario.",
-    image: "https://images.unsplash.com/photo-1449965408869-eaa3f722e40d?w=400&h=300&fit=crop",
+    image: getModelImage("Vehicle Type Classification", "Outdoor"),
     videoUrl: null,
     downloadUrl: null,
     rating: 0,
@@ -636,7 +717,7 @@ export const tfliteModelsData = [
   {
     name: "Gunshot Detection",
     description: "No public TFLite model found for this scenario.",
-    image: "https://images.unsplash.com/photo-1449965408869-eaa3f722e40d?w=400&h=300&fit=crop",
+    image: getModelImage("Gunshot Detection", "Outdoor"),
     videoUrl: null,
     downloadUrl: null,
     rating: 0,
@@ -654,7 +735,7 @@ export const tfliteModelsData = [
   {
     name: "Glass-breaking Sound Detection",
     description: "No public TFLite model found for this scenario.",
-    image: "https://images.unsplash.com/photo-1449965408869-eaa3f722e40d?w=400&h=300&fit=crop",
+    image: getModelImage("Glass-breaking Sound Detection", "Outdoor"),
     videoUrl: null,
     downloadUrl: null,
     rating: 0,
@@ -672,7 +753,7 @@ export const tfliteModelsData = [
   {
     name: "Firework/Explosion Detection",
     description: "No public TFLite model found for this scenario.",
-    image: "https://images.unsplash.com/photo-1449965408869-eaa3f722e40d?w=400&h=300&fit=crop",
+    image: getModelImage("Firework/Explosion Detection", "Outdoor"),
     videoUrl: null,
     downloadUrl: null,
     rating: 0,
@@ -690,7 +771,7 @@ export const tfliteModelsData = [
   {
     name: "Crowd Density Monitoring",
     description: "No public TFLite model found for this scenario.",
-    image: "https://images.unsplash.com/photo-1449965408869-eaa3f722e40d?w=400&h=300&fit=crop",
+    image: getModelImage("Crowd Density Monitoring", "Outdoor"),
     videoUrl: null,
     downloadUrl: null,
     rating: 0,
@@ -708,7 +789,7 @@ export const tfliteModelsData = [
   {
     name: "Public Protest/Rally Monitoring",
     description: "No public TFLite model found for this scenario.",
-    image: "https://images.unsplash.com/photo-1449965408869-eaa3f722e40d?w=400&h=300&fit=crop",
+    image: getModelImage("Public Protest/Rally Monitoring", "Outdoor"),
     videoUrl: null,
     downloadUrl: null,
     rating: 0,
@@ -726,7 +807,7 @@ export const tfliteModelsData = [
   {
     name: "PPE Compliance Detection",
     description: "No public TFLite model found for this scenario.",
-    image: "https://images.unsplash.com/photo-1449965408869-eaa3f722e40d?w=400&h=300&fit=crop",
+    image: getModelImage("PPE Compliance Detection", "Outdoor"),
     videoUrl: null,
     downloadUrl: null,
     rating: 0,
@@ -744,7 +825,7 @@ export const tfliteModelsData = [
   {
     name: "Unsafe Worker Behavior Detection",
     description: "No public TFLite model found for this scenario.",
-    image: "https://images.unsplash.com/photo-1449965408869-eaa3f722e40d?w=400&h=300&fit=crop",
+    image: getModelImage("Unsafe Worker Behavior Detection", "Outdoor"),
     videoUrl: null,
     downloadUrl: null,
     rating: 0,
@@ -762,7 +843,7 @@ export const tfliteModelsData = [
   {
     name: "Forklift/Machine Collision Risk Alerts",
     description: "No public TFLite model found for this scenario.",
-    image: "https://images.unsplash.com/photo-1449965408869-eaa3f722e40d?w=400&h=300&fit=crop",
+    image: getModelImage("Forklift/Machine Collision Risk Alerts", "Outdoor"),
     videoUrl: null,
     downloadUrl: null,
     rating: 0,
@@ -780,7 +861,7 @@ export const tfliteModelsData = [
   {
     name: "Worker Fatigue Monitoring",
     description: "No public TFLite model found for this scenario.",
-    image: "https://images.unsplash.com/photo-1449965408869-eaa3f722e40d?w=400&h=300&fit=crop",
+    image: getModelImage("Worker Fatigue Monitoring", "Outdoor"),
     videoUrl: null,
     downloadUrl: null,
     rating: 0,
@@ -798,7 +879,7 @@ export const tfliteModelsData = [
   {
     name: "Smoke/Fire at Construction Site",
     description: "No public TFLite model found for this scenario.",
-    image: "https://images.unsplash.com/photo-1449965408869-eaa3f722e40d?w=400&h=300&fit=crop",
+    image: getModelImage("Smoke/Fire at Construction Site", "Outdoor"),
     videoUrl: null,
     downloadUrl: null,
     rating: 0,
@@ -816,7 +897,7 @@ export const tfliteModelsData = [
   {
     name: "Garbage Overflow Detection",
     description: "No public TFLite model found for this scenario.",
-    image: "https://images.unsplash.com/photo-1449965408869-eaa3f722e40d?w=400&h=300&fit=crop",
+    image: getModelImage("Garbage Overflow Detection", "Outdoor"),
     videoUrl: null,
     downloadUrl: null,
     rating: 0,
@@ -834,7 +915,7 @@ export const tfliteModelsData = [
   {
     name: "Waterlogging/Flood Detection",
     description: "No public TFLite model found for this scenario.",
-    image: "https://images.unsplash.com/photo-1449965408869-eaa3f722e40d?w=400&h=300&fit=crop",
+    image: getModelImage("Waterlogging/Flood Detection", "Outdoor"),
     videoUrl: null,
     downloadUrl: null,
     rating: 0,
@@ -852,7 +933,7 @@ export const tfliteModelsData = [
   {
     name: "Wild Animal Intrusion Detection",
     description: "No public TFLite model found for this scenario.",
-    image: "https://images.unsplash.com/photo-1449965408869-eaa3f722e40d?w=400&h=300&fit=crop",
+    image: getModelImage("Wild Animal Intrusion Detection", "Outdoor"),
     videoUrl: null,
     downloadUrl: null,
     rating: 0,
@@ -870,7 +951,7 @@ export const tfliteModelsData = [
   {
     name: "Streetlight Outage Detection",
     description: "No public TFLite model found for this scenario.",
-    image: "https://images.unsplash.com/photo-1449965408869-eaa3f722e40d?w=400&h=300&fit=crop",
+    image: getModelImage("Streetlight Outage Detection", "Outdoor"),
     videoUrl: null,
     downloadUrl: null,
     rating: 0,
@@ -888,7 +969,7 @@ export const tfliteModelsData = [
   {
     name: "Weather Anomaly Detection",
     description: "No public TFLite model found for this scenario.",
-    image: "https://images.unsplash.com/photo-1449965408869-eaa3f722e40d?w=400&h=300&fit=crop",
+    image: getModelImage("Weather Anomaly Detection", "Outdoor"),
     videoUrl: null,
     downloadUrl: null,
     rating: 0,

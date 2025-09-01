@@ -28,7 +28,7 @@ interface ModelProps {
 // Use only the models from tfliteModelsData
 const allModels: ModelProps[] = tfliteModelsData;
 
-// Top Models - select from both Indoor and Outdoor categories
+// Top Models - select from both Indoor and Outdoor categories, but avoid duplicates
 const topModels: ModelProps[] = [
   {
     name: "MediaPipe FaceDetector",
@@ -109,38 +109,6 @@ const topModels: ModelProps[] = [
     features: ["Anomaly detection", "Intrusion detection", "Real-time monitoring", "High accuracy"],
     githubUrl: "https://github.com/francescogrillea/AnomalyDetectionTFlite",
     demoReference: "GitHub francescogrillea/AnomalyDetectionTFlite"
-  },
-  {
-    name: "DoorOpenDetection TFLite",
-    description: "Custom TFLite model trained via Teachable Machine to detect door open/closed states.",
-    rating: 4.2,
-    downloads: "320K",
-    category: "Top Models",
-    updated: "1 week ago",
-    image: "https://images.unsplash.com/photo-1559827260-dc66d52bef19?w=400&h=300&fit=crop",
-    size: "15MB",
-    featured: true,
-    detailedDescription: "Custom TFLite model trained via Teachable Machine to detect door open/closed states.",
-    useCases: ["Door/Window open detection", "Security monitoring", "Home automation", "Access control"],
-    features: ["Custom trained", "Binary classification", "Real-time detection", "Easy integration"],
-    githubUrl: "https://github.com/hkrob/DoorOpenDetectionTFlite",
-    demoReference: "GitHub hkrob/DoorOpenDetectionTFlite"
-  },
-  {
-    name: "Custom Object Detector (Model Maker)",
-    description: "Custom-trained detector using EfficientDet-Lite models for package/person detection.",
-    rating: 4.3,
-    downloads: "450K",
-    category: "Top Models",
-    updated: "3 days ago",
-    image: "https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=400&h=300&fit=crop",
-    size: "25MB",
-    featured: true,
-    detailedDescription: "Custom-trained detector using EfficientDet-Lite models for package/person detection.",
-    useCases: ["Package delivery detection (courier at door)", "Object detection", "Surveillance", "Security systems"],
-    features: ["Custom trained", "EfficientDet-Lite based", "High accuracy", "Real-time detection"],
-    githubUrl: "https://github.com/TannerGilbert/TFLite-Object-Detection-with-TFLite-Model-Maker",
-    demoReference: "GitHub TannerGilbert/TFLite-Object-Detection-with-TFLite-Model-Maker"
   }
 ];
 
@@ -167,7 +135,8 @@ const ModelGrid = ({ activeTab, searchQuery }: ModelGridProps) => {
         models = topModels;
         break;
       default:
-        models = [...allModels, ...topModels];
+        // Show all models without duplicates
+        models = allModels;
     }
 
     // Apply search filter if searchQuery exists
@@ -239,7 +208,14 @@ const ModelGrid = ({ activeTab, searchQuery }: ModelGridProps) => {
         // Create a temporary link element to trigger download
         const isExternal = /^https?:\/\//i.test(model.downloadUrl);
         if (isExternal) {
-          window.open(model.downloadUrl, '_blank', 'noopener,noreferrer');
+          // For external URLs, try to download the file directly
+          const link = document.createElement('a');
+          link.href = model.downloadUrl;
+          link.download = `${model.name.replace(/\s+/g, '_').toLowerCase()}.tflite`;
+          link.target = '_blank';
+          document.body.appendChild(link);
+          link.click();
+          document.body.removeChild(link);
         } else {
           const link = document.createElement('a');
           link.href = model.downloadUrl;

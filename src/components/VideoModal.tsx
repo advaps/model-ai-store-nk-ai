@@ -79,28 +79,46 @@ const VideoModal = ({ isOpen, onClose, videoUrl, title }: VideoModalProps) => {
 
   // For YouTube URLs, show a different modal content
   if (isYouTubeUrl) {
+    // Extract YouTube video ID
+    const getYouTubeVideoId = (url: string) => {
+      const regExp = /^.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|&v=)([^#&?]*).*/;
+      const match = url.match(regExp);
+      return (match && match[2].length === 11) ? match[2] : null;
+    };
+
+    const videoId = getYouTubeVideoId(videoUrl);
+    
     return (
       <Dialog open={isOpen} onOpenChange={onClose}>
-        <DialogContent className="max-w-md p-6" aria-describedby="youtube-description">
+        <DialogContent className="max-w-4xl p-6" aria-describedby="youtube-description">
           <DialogTitle className="text-xl font-bold mb-4">Watch Demo Video</DialogTitle>
-          <DialogDescription id="youtube-description" className="mb-6">
-            This demo video is available on YouTube. Click the button below to watch it in a new tab.
-          </DialogDescription>
           
-          <div className="flex flex-col gap-4">
-            <Button 
-              onClick={handleYouTubeClick}
-              className="bg-red-600 hover:bg-red-700 text-white"
-            >
-              <ExternalLink className="h-4 w-4 mr-2" />
-              Watch on YouTube
-            </Button>
-            
-            <Button 
-              variant="outline" 
-              onClick={onClose}
-            >
-              Cancel
+          {videoId ? (
+            <div className="aspect-video w-full">
+              <iframe
+                src={`https://www.youtube.com/embed/${videoId}?autoplay=1&rel=0`}
+                title={`${title} Demo Video`}
+                className="w-full h-full rounded-lg"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowFullScreen
+              />
+            </div>
+          ) : (
+            <div className="text-center py-8">
+              <p className="text-muted-foreground mb-4">Invalid YouTube URL</p>
+              <Button 
+                onClick={handleYouTubeClick}
+                className="bg-red-600 hover:bg-red-700 text-white"
+              >
+                <ExternalLink className="h-4 w-4 mr-2" />
+                Watch on YouTube
+              </Button>
+            </div>
+          )}
+          
+          <div className="flex justify-end mt-4">
+            <Button variant="outline" onClick={onClose}>
+              Close
             </Button>
           </div>
         </DialogContent>
