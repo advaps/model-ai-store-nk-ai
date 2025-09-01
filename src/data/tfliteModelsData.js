@@ -1,12 +1,12 @@
 // TFLite Models Data converted from CSV
-import { getModelImage } from './modelImages.js';
+import { getLocalModelImage } from './localImageMapping.js';
 
 export const tfliteModelsData = [
   // Indoor Models
   {
     name: "MediaPipe FaceDetector",
     description: "Face detection TFLite model optimized for real-time recognition.",
-    image: getModelImage("MediaPipe FaceDetector", "Indoor"),
+    image: getLocalModelImage("MediaPipe FaceDetector"),
     videoUrl: "https://www.youtube.com/watch?v=H6Qy0N535z0",
     downloadUrl: "https://huggingface.co/qualcomm/MediaPipe-Face-Detection/blob/main/FaceDetector.tflite",
     rating: 4.5,
@@ -24,7 +24,7 @@ export const tfliteModelsData = [
   {
     name: "Multi-factor Access System",
     description: "No public TFLite model found for this scenario.",
-    image: getModelImage("Multi-factor Access System", "Indoor"),
+    image: getLocalModelImage("Multi-factor Access System"),
     videoUrl: null,
     downloadUrl: null,
     rating: 0,
@@ -42,7 +42,7 @@ export const tfliteModelsData = [
   {
     name: "SSD Lite MobileNet-V1 Quantized (COCO)",
     description: "General object detection model, can detect people for stranger alerts.",
-    image: getModelImage("SSD Lite MobileNet-V1 Quantized (COCO)", "Indoor"),
+    image: getLocalModelImage("SSD Lite MobileNet-V1 Quantized (COCO)"),
     videoUrl: "https://www.youtube.com/watch?v=C78xM7tV_t0",
     downloadUrl: "https://storage.googleapis.com/download.tensorflow.org/models/tflite/coco_ssd_mobilenet_v1_1.0_quant_2018_06_29.zip",
     rating: 4.4,
@@ -60,7 +60,7 @@ export const tfliteModelsData = [
   {
     name: "DoorOpenDetection TFLite",
     description: "Custom TFLite model trained via Teachable Machine to detect door open/closed states.",
-    image: getModelImage("DoorOpenDetection TFLite", "Indoor"),
+    image: getLocalModelImage("DoorOpenDetection TFLite"),
     videoUrl: null,
     downloadUrl: "https://github.com/hkrob/DoorOpenDetectionTFlite",
     rating: 4.2,
@@ -78,7 +78,7 @@ export const tfliteModelsData = [
   {
     name: "Custom Object Detector (Model Maker)",
     description: "Custom-trained detector using EfficientDet-Lite models for package/person detection.",
-    image: getModelImage("Custom Object Detector (Model Maker)", "Indoor"),
+    image: getLocalModelImage("Custom Object Detector (Model Maker)"),
     videoUrl: null,
     downloadUrl: "https://github.com/TannerGilbert/TFLite-Object-Detection-with-TFLite-Model-Maker",
     rating: 4.3,
@@ -96,7 +96,7 @@ export const tfliteModelsData = [
   {
     name: "Fall Detection Model",
     description: "TFLite model for recognizing elderly falls.",
-    image: getModelImage("Fall Detection Model", "Indoor"),
+    image: getLocalModelImage("Fall Detection Model"),
     videoUrl: null,
     downloadUrl: "https://huggingface.co/Siddhartha276/Fall_Detection/blob/main/fall_detection_model.tflite",
     rating: 4.6,
@@ -114,7 +114,7 @@ export const tfliteModelsData = [
   {
     name: "Heart-attack/Abnormal Motion Alert",
     description: "No public TFLite model found for this scenario.",
-    image: getModelImage("Heart-attack/Abnormal Motion Alert", "Indoor"),
+    image: getLocalModelImage("Heart-attack/Abnormal Motion Alert"),
     videoUrl: null,
     downloadUrl: null,
     rating: 0,
@@ -132,7 +132,7 @@ export const tfliteModelsData = [
   {
     name: "Sleep Pattern Monitoring",
     description: "No public TFLite model found for this scenario.",
-    image: getModelImage("Sleep Pattern Monitoring", "Indoor"),
+    image: getLocalModelImage("Sleep Pattern Monitoring"),
     videoUrl: null,
     downloadUrl: null,
     rating: 0,
@@ -150,7 +150,7 @@ export const tfliteModelsData = [
   {
     name: "Cry Detection",
     description: "No public TFLite model found for this scenario.",
-    image: getModelImage("Cry Detection", "Indoor"),
+    image: getLocalModelImage("Cry Detection"),
     videoUrl: null,
     downloadUrl: null,
     rating: 0,
@@ -168,7 +168,7 @@ export const tfliteModelsData = [
   {
     name: "Sudden Collapse Detection",
     description: "No public TFLite model found for this scenario.",
-    image: getModelImage("Sudden Collapse Detection", "Indoor"),
+    image: getLocalModelImage("Sudden Collapse Detection"),
     videoUrl: null,
     downloadUrl: null,
     rating: 0,
@@ -186,7 +186,7 @@ export const tfliteModelsData = [
   {
     name: "Fire Detection CNN",
     description: "TensorFlow Lite CNN for fire/smoke detection.",
-    image: getModelImage("Fire Detection CNN", "Indoor"),
+    image: getLocalModelImage("Fire Detection CNN"),
     videoUrl: null,
     downloadUrl: "https://github.com/edwios/fire-detection-cnn-tflite",
     rating: 4.4,
@@ -204,7 +204,7 @@ export const tfliteModelsData = [
   {
     name: "Gas Leakage Detection",
     description: "No public TFLite model found for this scenario.",
-    image: getModelImage("Gas Leakage Detection", "Indoor"),
+    image: getLocalModelImage("Gas Leakage Detection"),
     videoUrl: null,
     downloadUrl: null,
     rating: 0,
@@ -222,7 +222,7 @@ export const tfliteModelsData = [
   {
     name: "Stove/Induction Left-on Detection",
     description: "No public TFLite model found for this scenario.",
-    image: getModelImage("Stove/Induction Left-on Detection", "Indoor"),
+    image: getLocalModelImage("Stove/Induction Left-on Detection"),
     videoUrl: null,
     downloadUrl: null,
     rating: 0,
@@ -240,7 +240,7 @@ export const tfliteModelsData = [
   {
     name: "Short-circuit/Sparking Detection",
     description: "No public TFLite model found for this scenario.",
-    image: getModelImage("Short-circuit/Sparking Detection", "Indoor"),
+    image: getLocalModelImage("Short-circuit/Sparking Detection"),
     videoUrl: null,
     downloadUrl: null,
     rating: 0,
@@ -258,7 +258,7 @@ export const tfliteModelsData = [
   {
     name: "Overheating Appliance Detection",
     description: "No public TFLite model found for this scenario.",
-    image: getModelImage("Overheating Appliance Detection", "Indoor"),
+    image: getLocalModelImage("Overheating Appliance Detection"),
     videoUrl: null,
     downloadUrl: null,
     rating: 0,
@@ -276,7 +276,7 @@ export const tfliteModelsData = [
   {
     name: "Child Unattended Detection",
     description: "No public TFLite model found for this scenario.",
-    image: getModelImage("Child Unattended Detection", "Indoor"),
+    image: getLocalModelImage("Child Unattended Detection"),
     videoUrl: null,
     downloadUrl: null,
     rating: 0,
@@ -294,7 +294,7 @@ export const tfliteModelsData = [
   {
     name: "Pet Activity Monitoring",
     description: "No public TFLite model found for this scenario.",
-    image: getModelImage("Pet Activity Monitoring", "Indoor"),
+    image: getLocalModelImage("Pet Activity Monitoring"),
     videoUrl: null,
     downloadUrl: null,
     rating: 0,
@@ -312,7 +312,7 @@ export const tfliteModelsData = [
   {
     name: "Elderly Wandering Detection",
     description: "No public TFLite model found for this scenario.",
-    image: getModelImage("Elderly Wandering Detection", "Indoor"),
+    image: getLocalModelImage("Elderly Wandering Detection"),
     videoUrl: null,
     downloadUrl: null,
     rating: 0,
@@ -330,7 +330,7 @@ export const tfliteModelsData = [
   {
     name: "Anomaly Detection TFLite",
     description: "Anomaly detection model using TensorFlow Lite, suitable for intrusion.",
-    image: getModelImage("Anomaly Detection TFLite", "Indoor"),
+    image: getLocalModelImage("Anomaly Detection TFLite"),
     videoUrl: null,
     downloadUrl: "https://github.com/francescogrillea/AnomalyDetectionTFlite",
     rating: 4.3,
@@ -348,7 +348,7 @@ export const tfliteModelsData = [
   {
     name: "Smart Occupancy Monitoring",
     description: "No public TFLite model found for this scenario.",
-    image: getModelImage("Smart Occupancy Monitoring", "Indoor"),
+    image: getLocalModelImage("Smart Occupancy Monitoring"),
     videoUrl: null,
     downloadUrl: null,
     rating: 0,
@@ -366,7 +366,7 @@ export const tfliteModelsData = [
   {
     name: "Desk Occupancy Tracking",
     description: "No public TFLite model found for this scenario.",
-    image: getModelImage("Desk Occupancy Tracking", "Indoor"),
+    image: getLocalModelImage("Desk Occupancy Tracking"),
     videoUrl: null,
     downloadUrl: null,
     rating: 0,
@@ -384,7 +384,7 @@ export const tfliteModelsData = [
   {
     name: "Meeting Room Utilization Monitoring",
     description: "No public TFLite model found for this scenario.",
-    image: getModelImage("Meeting Room Utilization Monitoring", "Indoor"),
+    image: getLocalModelImage("Meeting Room Utilization Monitoring"),
     videoUrl: null,
     downloadUrl: null,
     rating: 0,
@@ -402,7 +402,7 @@ export const tfliteModelsData = [
   {
     name: "People Counting for Co-working Spaces",
     description: "No public TFLite model found for this scenario.",
-    image: getModelImage("People Counting for Co-working Spaces", "Indoor"),
+    image: getLocalModelImage("People Counting for Co-working Spaces"),
     videoUrl: null,
     downloadUrl: null,
     rating: 0,
@@ -420,7 +420,7 @@ export const tfliteModelsData = [
   {
     name: "Employee Posture/Focus Analysis",
     description: "No public TFLite model found for this scenario.",
-    image: getModelImage("Employee Posture/Focus Analysis", "Indoor"),
+    image: getLocalModelImage("Employee Posture/Focus Analysis"),
     videoUrl: null,
     downloadUrl: null,
     rating: 0,
@@ -438,7 +438,7 @@ export const tfliteModelsData = [
   {
     name: "Safety Gear Detection",
     description: "No public TFLite model found for this scenario.",
-    image: getModelImage("Safety Gear Detection", "Indoor"),
+    image: getLocalModelImage("Safety Gear Detection"),
     videoUrl: null,
     downloadUrl: null,
     rating: 0,
@@ -458,7 +458,7 @@ export const tfliteModelsData = [
   {
     name: "Intrusion Detection (Perimeter Breach)",
     description: "No public TFLite model found for this scenario.",
-    image: getModelImage("Intrusion Detection (Perimeter Breach)", "Outdoor"),
+    image: getLocalModelImage("Intrusion Detection (Perimeter Breach)"),
     videoUrl: null,
     downloadUrl: null,
     rating: 0,
@@ -476,7 +476,7 @@ export const tfliteModelsData = [
   {
     name: "Weapon Detection",
     description: "No public TFLite model found for this scenario.",
-    image: getModelImage("Weapon Detection", "Outdoor"),
+    image: getLocalModelImage("Weapon Detection"),
     videoUrl: null,
     downloadUrl: null,
     rating: 0,
@@ -494,7 +494,7 @@ export const tfliteModelsData = [
   {
     name: "Suspicious Loitering Alert",
     description: "No public TFLite model found for this scenario.",
-    image: getModelImage("Suspicious Loitering Alert", "Outdoor"),
+    image: getLocalModelImage("Suspicious Loitering Alert"),
     videoUrl: null,
     downloadUrl: null,
     rating: 0,
@@ -512,7 +512,7 @@ export const tfliteModelsData = [
   {
     name: "Abandoned Object Detection",
     description: "No public TFLite model found for this scenario.",
-    image: getModelImage("Abandoned Object Detection", "Outdoor"),
+    image: getLocalModelImage("Abandoned Object Detection"),
     videoUrl: null,
     downloadUrl: null,
     rating: 0,
@@ -530,7 +530,7 @@ export const tfliteModelsData = [
   {
     name: "Crowd Aggression Detection",
     description: "No public TFLite model found for this scenario.",
-    image: getModelImage("Crowd Aggression Detection", "Outdoor"),
+    image: getLocalModelImage("Crowd Aggression Detection"),
     videoUrl: null,
     downloadUrl: null,
     rating: 0,
@@ -548,7 +548,7 @@ export const tfliteModelsData = [
   {
     name: "ANPR (Automatic Number Plate Recognition)",
     description: "No public TFLite model found for this scenario.",
-    image: getModelImage("ANPR (Automatic Number Plate Recognition)", "Outdoor"),
+    image: getLocalModelImage("ANPR (Automatic Number Plate Recognition)"),
     videoUrl: null,
     downloadUrl: null,
     rating: 0,
@@ -566,7 +566,7 @@ export const tfliteModelsData = [
   {
     name: "Speeding Vehicle Detection",
     description: "No public TFLite model found for this scenario.",
-    image: getModelImage("Speeding Vehicle Detection", "Outdoor"),
+    image: getLocalModelImage("Speeding Vehicle Detection"),
     videoUrl: null,
     downloadUrl: null,
     rating: 0,
@@ -584,7 +584,7 @@ export const tfliteModelsData = [
   {
     name: "Wrong-way Driving Detection",
     description: "No public TFLite model found for this scenario.",
-    image: getModelImage("Wrong-way Driving Detection", "Outdoor"),
+    image: getLocalModelImage("Wrong-way Driving Detection"),
     videoUrl: null,
     downloadUrl: null,
     rating: 0,
@@ -602,7 +602,7 @@ export const tfliteModelsData = [
   {
     name: "Parking Space Occupancy Detection",
     description: "No public TFLite model found for this scenario.",
-    image: getModelImage("Parking Space Occupancy Detection", "Outdoor"),
+    image: getLocalModelImage("Parking Space Occupancy Detection"),
     videoUrl: null,
     downloadUrl: null,
     rating: 0,
@@ -620,7 +620,7 @@ export const tfliteModelsData = [
   {
     name: "Vehicle Type Classification",
     description: "No public TFLite model found for this scenario.",
-    image: getModelImage("Vehicle Type Classification", "Outdoor"),
+    image: getLocalModelImage("Vehicle Type Classification"),
     videoUrl: null,
     downloadUrl: null,
     rating: 0,
@@ -638,7 +638,7 @@ export const tfliteModelsData = [
   {
     name: "Gunshot Detection",
     description: "No public TFLite model found for this scenario.",
-    image: getModelImage("Gunshot Detection", "Outdoor"),
+    image: getLocalModelImage("Gunshot Detection"),
     videoUrl: null,
     downloadUrl: null,
     rating: 0,
@@ -656,7 +656,7 @@ export const tfliteModelsData = [
   {
     name: "Glass-breaking Sound Detection",
     description: "No public TFLite model found for this scenario.",
-    image: getModelImage("Glass-breaking Sound Detection", "Outdoor"),
+    image: getLocalModelImage("Glass-breaking Sound Detection"),
     videoUrl: null,
     downloadUrl: null,
     rating: 0,
@@ -674,7 +674,7 @@ export const tfliteModelsData = [
   {
     name: "Firework/Explosion Detection",
     description: "No public TFLite model found for this scenario.",
-    image: getModelImage("Firework/Explosion Detection", "Outdoor"),
+    image: getLocalModelImage("Firework/Explosion Detection"),
     videoUrl: null,
     downloadUrl: null,
     rating: 0,
@@ -692,7 +692,7 @@ export const tfliteModelsData = [
   {
     name: "Crowd Density Monitoring",
     description: "No public TFLite model found for this scenario.",
-    image: getModelImage("Crowd Density Monitoring", "Outdoor"),
+    image: getLocalModelImage("Crowd Density Monitoring"),
     videoUrl: null,
     downloadUrl: null,
     rating: 0,
@@ -710,7 +710,7 @@ export const tfliteModelsData = [
   {
     name: "Public Protest/Rally Monitoring",
     description: "No public TFLite model found for this scenario.",
-    image: getModelImage("Public Protest/Rally Monitoring", "Outdoor"),
+    image: getLocalModelImage("Public Protest/Rally Monitoring"),
     videoUrl: null,
     downloadUrl: null,
     rating: 0,
@@ -728,7 +728,7 @@ export const tfliteModelsData = [
   {
     name: "PPE Compliance Detection",
     description: "No public TFLite model found for this scenario.",
-    image: getModelImage("PPE Compliance Detection", "Outdoor"),
+    image: getLocalModelImage("PPE Compliance Detection"),
     videoUrl: null,
     downloadUrl: null,
     rating: 0,
@@ -746,7 +746,7 @@ export const tfliteModelsData = [
   {
     name: "Unsafe Worker Behavior Detection",
     description: "No public TFLite model found for this scenario.",
-    image: getModelImage("Unsafe Worker Behavior Detection", "Outdoor"),
+    image: getLocalModelImage("Unsafe Worker Behavior Detection"),
     videoUrl: null,
     downloadUrl: null,
     rating: 0,
@@ -764,7 +764,7 @@ export const tfliteModelsData = [
   {
     name: "Forklift/Machine Collision Risk Alerts",
     description: "No public TFLite model found for this scenario.",
-    image: getModelImage("Forklift/Machine Collision Risk Alerts", "Outdoor"),
+    image: getLocalModelImage("Forklift/Machine Collision Risk Alerts"),
     videoUrl: null,
     downloadUrl: null,
     rating: 0,
@@ -782,7 +782,7 @@ export const tfliteModelsData = [
   {
     name: "Worker Fatigue Monitoring",
     description: "No public TFLite model found for this scenario.",
-    image: getModelImage("Worker Fatigue Monitoring", "Outdoor"),
+    image: getLocalModelImage("Worker Fatigue Monitoring"),
     videoUrl: null,
     downloadUrl: null,
     rating: 0,
@@ -800,7 +800,7 @@ export const tfliteModelsData = [
   {
     name: "Smoke/Fire at Construction Site",
     description: "No public TFLite model found for this scenario.",
-    image: getModelImage("Smoke/Fire at Construction Site", "Outdoor"),
+    image: getLocalModelImage("Smoke/Fire at Construction Site"),
     videoUrl: null,
     downloadUrl: null,
     rating: 0,
@@ -818,7 +818,7 @@ export const tfliteModelsData = [
   {
     name: "Garbage Overflow Detection",
     description: "No public TFLite model found for this scenario.",
-    image: getModelImage("Garbage Overflow Detection", "Outdoor"),
+    image: getLocalModelImage("Garbage Overflow Detection"),
     videoUrl: null,
     downloadUrl: null,
     rating: 0,
@@ -836,7 +836,7 @@ export const tfliteModelsData = [
   {
     name: "Waterlogging/Flood Detection",
     description: "No public TFLite model found for this scenario.",
-    image: getModelImage("Waterlogging/Flood Detection", "Outdoor"),
+    image: getLocalModelImage("Waterlogging/Flood Detection"),
     videoUrl: null,
     downloadUrl: null,
     rating: 0,
@@ -854,7 +854,7 @@ export const tfliteModelsData = [
   {
     name: "Wild Animal Intrusion Detection",
     description: "No public TFLite model found for this scenario.",
-    image: getModelImage("Wild Animal Intrusion Detection", "Outdoor"),
+    image: getLocalModelImage("Wild Animal Intrusion Detection"),
     videoUrl: null,
     downloadUrl: null,
     rating: 0,
@@ -872,7 +872,7 @@ export const tfliteModelsData = [
   {
     name: "Streetlight Outage Detection",
     description: "No public TFLite model found for this scenario.",
-    image: getModelImage("Streetlight Outage Detection", "Outdoor"),
+    image: getLocalModelImage("Streetlight Outage Detection"),
     videoUrl: null,
     downloadUrl: null,
     rating: 0,
@@ -890,7 +890,7 @@ export const tfliteModelsData = [
   {
     name: "Weather Anomaly Detection",
     description: "No public TFLite model found for this scenario.",
-    image: getModelImage("Weather Anomaly Detection", "Outdoor"),
+    image: getLocalModelImage("Weather Anomaly Detection"),
     videoUrl: null,
     downloadUrl: null,
     rating: 0,
