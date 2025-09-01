@@ -1,84 +1,5 @@
 // TFLite Models Data converted from CSV
-
-// Function to generate appropriate images for each model type
-const getModelImage = (name, category) => {
-  const lowerName = name.toLowerCase();
-  
-  // Face detection models
-  if (lowerName.includes('face') || lowerName.includes('facedetector')) {
-    return "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&h=300&fit=crop";
-  }
-  
-  // Security and surveillance models
-  if (lowerName.includes('intrusion') || lowerName.includes('anomaly') || lowerName.includes('surveillance')) {
-    return "https://images.unsplash.com/photo-1449965408869-eaa3f722e40d?w=400&h=300&fit=crop";
-  }
-  
-  // Healthcare and monitoring models
-  if (lowerName.includes('fall') || lowerName.includes('health') || lowerName.includes('elderly') || lowerName.includes('sleep')) {
-    return "https://images.unsplash.com/photo-1571741755707-5d25de3b6cb2?w=400&h=300&fit=crop";
-  }
-  
-  // Child and pet monitoring
-  if (lowerName.includes('child') || lowerName.includes('cry') || lowerName.includes('pet')) {
-    return "https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=400&h=300&fit=crop";
-  }
-  
-  // Fire and safety models
-  if (lowerName.includes('fire') || lowerName.includes('smoke') || lowerName.includes('gas')) {
-    return "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=400&h=300&fit=crop";
-  }
-  
-  // Door and access control
-  if (lowerName.includes('door') || lowerName.includes('access') || lowerName.includes('unlock')) {
-    return "https://images.unsplash.com/photo-1559827260-dc66d52bef19?w=400&h=300&fit=crop";
-  }
-  
-  // Object detection models
-  if (lowerName.includes('object') || lowerName.includes('detection') || lowerName.includes('ssd') || lowerName.includes('mobilenet')) {
-    return "https://images.unsplash.com/photo-1449965408869-eaa3f722e40d?w=400&h=300&fit=crop";
-  }
-  
-  // Traffic and vehicle models
-  if (lowerName.includes('vehicle') || lowerName.includes('traffic') || lowerName.includes('parking') || lowerName.includes('anpr')) {
-    return "https://images.unsplash.com/photo-1449824913935-59a10b8d2000?w=400&h=300&fit=crop";
-  }
-  
-  // Construction and industrial safety
-  if (lowerName.includes('construction') || lowerName.includes('worker') || lowerName.includes('ppe') || lowerName.includes('industrial')) {
-    return "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=400&h=300&fit=crop";
-  }
-  
-  // Crowd and public safety
-  if (lowerName.includes('crowd') || lowerName.includes('public') || lowerName.includes('protest')) {
-    return "https://images.unsplash.com/photo-1449965408869-eaa3f722e40d?w=400&h=300&fit=crop";
-  }
-  
-  // Weather and environmental
-  if (lowerName.includes('weather') || lowerName.includes('flood') || lowerName.includes('waterlogging')) {
-    return "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=400&h=300&fit=crop";
-  }
-  
-  // Wildlife and animal detection
-  if (lowerName.includes('animal') || lowerName.includes('wild')) {
-    return "https://images.unsplash.com/photo-1449965408869-eaa3f722e40d?w=400&h=300&fit=crop";
-  }
-  
-  // Infrastructure monitoring
-  if (lowerName.includes('streetlight') || lowerName.includes('infrastructure')) {
-    return "https://images.unsplash.com/photo-1449965408869-eaa3f722e40d?w=400&h=300&fit=crop";
-  }
-  
-  // Default images based on category
-  if (category === "Indoor") {
-    return "https://images.unsplash.com/photo-1559827260-dc66d52bef19?w=400&h=300&fit=crop";
-  } else if (category === "Outdoor") {
-    return "https://images.unsplash.com/photo-1449965408869-eaa3f722e40d?w=400&h=300&fit=crop";
-  }
-  
-  // Fallback image
-  return "https://images.unsplash.com/photo-1516116216624-53e697fedbea?w=400&h=300&fit=crop";
-};
+import { getModelImage } from './modelImages.js';
 
 export const tfliteModelsData = [
   // Indoor Models
@@ -86,7 +7,7 @@ export const tfliteModelsData = [
     name: "MediaPipe FaceDetector",
     description: "Face detection TFLite model optimized for real-time recognition.",
     image: getModelImage("MediaPipe FaceDetector", "Indoor"),
-    videoUrl: null,
+    videoUrl: "https://www.youtube.com/watch?v=H6Qy0N535z0",
     downloadUrl: "https://huggingface.co/qualcomm/MediaPipe-Face-Detection/blob/main/FaceDetector.tflite",
     rating: 4.5,
     downloads: "850K",
@@ -122,7 +43,7 @@ export const tfliteModelsData = [
     name: "SSD Lite MobileNet-V1 Quantized (COCO)",
     description: "General object detection model, can detect people for stranger alerts.",
     image: getModelImage("SSD Lite MobileNet-V1 Quantized (COCO)", "Indoor"),
-    videoUrl: null,
+    videoUrl: "https://www.youtube.com/watch?v=C78xM7tV_t0",
     downloadUrl: "https://storage.googleapis.com/download.tensorflow.org/models/tflite/coco_ssd_mobilenet_v1_1.0_quant_2018_06_29.zip",
     rating: 4.4,
     downloads: "1.1M",
