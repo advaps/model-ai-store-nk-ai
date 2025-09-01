@@ -24,10 +24,13 @@ const VideoModal = ({ isOpen, onClose, videoUrl, title }: VideoModalProps) => {
   // Check if video URL is a YouTube URL
   const isYouTubeUrl = videoUrl.includes('youtube.com') || videoUrl.includes('youtu.be');
   
+  // Check if video URL is a local asset
+  const isLocalAsset = videoUrl.startsWith('./assets/') || videoUrl.startsWith('/assets/') || videoUrl.startsWith('assets/');
+  
   // Check if video URL looks like a demo/sample URL (likely to fail)
   const isDemoUrl = videoUrl.includes('sample-videos.com') || 
                    videoUrl.includes('user-images.githubusercontent.com') ||
-                   (!videoUrl.startsWith('/') && !videoUrl.startsWith('http') && !isYouTubeUrl);
+                   (videoUrl.includes('demo') && videoUrl.includes('sample'));
 
   // Handle YouTube URLs
   const handleYouTubeClick = () => {
@@ -53,7 +56,8 @@ const VideoModal = ({ isOpen, onClose, videoUrl, title }: VideoModalProps) => {
       return;
     }
     
-    if (isOpen) {
+    if (isOpen && (isLocalAsset || videoUrl.startsWith('http'))) {
+      // For local assets and external URLs, show the video player
       setVideoError(false);
       setUseNativeControls(true);
       
@@ -70,11 +74,62 @@ const VideoModal = ({ isOpen, onClose, videoUrl, title }: VideoModalProps) => {
       
       return () => clearTimeout(timer);
     }
-  }, [isOpen, videoUrl, onClose, toast, isYouTubeUrl, isDemoUrl]);
+  }, [isOpen, videoUrl, onClose, toast, isYouTubeUrl, isDemoUrl, isLocalAsset]);
 
   // Don't render modal content if it's a demo URL
   if (isDemoUrl) {
     return null;
+  }
+  
+  // For local assets and external URLs, show the video player
+  if (isLocalAsset || videoUrl.startsWith('http')) {
+    return (
+      <Dialog open={isOpen} onOpenChange={onClose}>
+        <DialogContent className="max-w-4xl p-0 bg-black" aria-describedby="video-description">
+          <DialogTitle className="sr-only">{title} Demo Video</DialogTitle>
+          <DialogDescription id="video-description" className="sr-only">
+            Demo video for {title} model showing its capabilities and functionality
+          </DialogDescription>
+          
+          <div className="relative">
+            <Button
+              variant="ghost"
+              size="icon"
+              className="absolute top-2 right-2 z-10 text-white hover:bg-white/20"
+              onClick={onClose}
+            >
+              <X className="h-4 w-4" />
+            </Button>
+
+            <div className="relative bg-black min-h-[400px] flex items-center justify-center">
+              <video
+                ref={videoRef}
+                src={videoUrl}
+                className="w-full max-h-[70vh] object-contain"
+                controls={useNativeControls}
+                preload="auto"
+                muted={false}
+                playsInline
+                crossOrigin="anonymous"
+                onError={(e) => {
+                  console.error('Video error:', e);
+                  console.error('Video src:', videoUrl);
+                  setVideoError(true);
+                  toast({
+                    title: "Video Error",
+                    description: "Unable to load the video. Please try again later.",
+                  });
+                  onClose();
+                }}
+                onLoadStart={() => console.log('Video loading started')}
+                onCanPlay={() => console.log('Video can play')}
+                onLoadedData={() => console.log('Video data loaded')}
+              />
+            </div>
+          </div>
+        </DialogContent>
+      </Dialog>
+    );
   }
 
   // For YouTube URLs, show a different modal content
@@ -125,54 +180,6 @@ const VideoModal = ({ isOpen, onClose, videoUrl, title }: VideoModalProps) => {
       </Dialog>
     );
   }
-
-  return (
-    <Dialog open={isOpen} onOpenChange={onClose}>
-      <DialogContent className="max-w-4xl p-0 bg-black" aria-describedby="video-description">
-        <DialogTitle className="sr-only">{title} Demo Video</DialogTitle>
-        <DialogDescription id="video-description" className="sr-only">
-          Demo video for {title} model showing its capabilities and functionality
-        </DialogDescription>
-        
-        <div className="relative">
-          <Button
-            variant="ghost"
-            size="icon"
-            className="absolute top-2 right-2 z-10 text-white hover:bg-white/20"
-            onClick={onClose}
-          >
-            <X className="h-4 w-4" />
-          </Button>
-
-          <div className="relative bg-black min-h-[400px] flex items-center justify-center">
-            <video
-              ref={videoRef}
-              src={videoUrl}
-              className="w-full max-h-[70vh] object-contain"
-              controls={useNativeControls}
-              preload="auto"
-              muted={false}
-              playsInline
-              crossOrigin="anonymous"
-              onError={(e) => {
-                console.error('Video error:', e);
-                console.error('Video src:', videoUrl);
-                setVideoError(true);
-                toast({
-                  title: "Coming Soon",
-                  description: "Demo video functionality will be available soon",
-                });
-                onClose();
-              }}
-              onLoadStart={() => console.log('Video loading started')}
-              onCanPlay={() => console.log('Video can play')}
-              onLoadedData={() => console.log('Video data loaded')}
-            />
-          </div>
-        </div>
-      </DialogContent>
-    </Dialog>
-  );
 };
 
 export default VideoModal;
