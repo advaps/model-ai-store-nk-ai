@@ -28,41 +28,18 @@ interface ModelProps {
 // Use only the models from tfliteModelsData
 const allModels: ModelProps[] = tfliteModelsData;
 
-// Top Models - Only MediaPipe and ANPR models
-const topModels: ModelProps[] = [
-  {
-    name: "MediaPipe FaceDetector",
-    description: "Face detection TFLite model optimized for real-time recognition.",
-    rating: 4.5,
-    downloads: "850K",
-    category: "Top Models",
-    updated: "1 day ago",
-    image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&h=300&fit=crop",
-    size: "2.1MB",
-    featured: true,
-    detailedDescription: "Face detection TFLite model optimized for real-time recognition.",
-    useCases: ["Face recognition for door unlock", "Security systems", "Access control", "Biometric authentication"],
-    features: ["Real-time detection", "High accuracy", "Mobile optimized", "Lightweight"],
-    githubUrl: "https://huggingface.co/qualcomm/MediaPipe-Face-Detection",
-    demoReference: "MediaPipe Face Detection"
-  },
-  {
-    name: "ANPR (Automatic Number Plate Recognition)",
-    description: "Advanced traffic monitoring system that automatically reads and recognizes vehicle license plates for traffic management and law enforcement.",
-    rating: 4.2,
-    downloads: "45K",
-    category: "Top Models",
-    updated: "2 days ago",
-    image: "https://images.unsplash.com/photo-1449965408869-eaa3f722e40d?w=400&h=300&fit=crop",
-    size: "4.1MB",
-    featured: true,
-    detailedDescription: "Advanced traffic monitoring system that automatically reads and recognizes vehicle license plates for traffic management and law enforcement. This TFLite model provides real-time license plate detection and recognition capabilities.",
-    useCases: ["ANPR (automatic number plate recognition)", "Traffic monitoring", "Law enforcement", "Parking management", "Toll collection", "Security surveillance"],
-    features: ["Real-time detection", "High accuracy OCR", "Mobile optimized", "Lightweight TFLite model", "Multi-platform support"],
-    githubUrl: "https://github.com/ultralytics/yolov5",
-    demoReference: "Number Plate Recognition Demo"
+// Top Models - Reference actual models from tfliteModelsData
+const getTopModels = (): ModelProps[] => {
+  const mediapipeModel = allModels.find(model => model.name === "MediaPipe FaceDetector");
+  const anprModel = allModels.find(model => model.name === "ANPR (Automatic Number Plate Recognition)");
+  
+  if (mediapipeModel && anprModel) {
+    return [mediapipeModel, anprModel];
   }
-];
+  
+  // Fallback to empty array if models not found
+  return [];
+};
 
 interface ModelGridProps {
   activeTab: string;
@@ -84,7 +61,7 @@ const ModelGrid = ({ activeTab, searchQuery }: ModelGridProps) => {
         models = allModels.filter(model => model.category === "Outdoor");
         break;
       case "Top Models":
-        models = topModels;
+        models = getTopModels();
         break;
       default:
         // Show all models without duplicates
