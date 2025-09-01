@@ -19,6 +19,7 @@ interface ModelCardProps {
   githubUrl?: string;
   downloadUrl?: string;
   features?: string[];
+  demoReference?: string;
   onCardClick?: () => void;
   onInstallClick?: () => void;
 }

@@ -24,6 +24,7 @@ interface ModelDetailProps {
   downloadUrl?: string;
   features?: string[];
   modelPath?: string;
+  demoReference?: string;
 }
 
 interface ModelDetailModalProps {
@@ -194,6 +195,14 @@ const ModelDetailModal = ({ isOpen, onClose, model }: ModelDetailModalProps) => 
               </div>
 
               <p className="text-muted-foreground">{model.description}</p>
+
+              {/* Demo Reference */}
+              {model.demoReference && (
+                <div className="text-sm text-muted-foreground">
+                  <span className="font-medium">Demo/Reference: </span>
+                  {model.demoReference}
+                </div>
+              )}
 
               <div className="flex flex-col sm:flex-row gap-2">
                 <Button 

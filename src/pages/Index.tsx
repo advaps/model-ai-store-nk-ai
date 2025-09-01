@@ -1,6 +1,5 @@
 import Header from "@/components/Header";
 import ModelGrid from "@/components/ModelGrid";
-import CategoryFilter from "@/components/CategoryFilter";
 import { useState } from "react";
 
 const Index = () => {
@@ -21,7 +20,6 @@ const Index = () => {
         searchQuery={searchQuery}
         onSearchChange={setSearchQuery}
       />
-      <CategoryFilter activeTab={activeTab} onTabChange={handleTabChange} />
       <ModelGrid activeTab={activeTab} searchQuery={searchQuery} />
     </div>
   );

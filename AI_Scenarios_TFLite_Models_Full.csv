@@ -1,0 +1,51 @@
+Scenario,Model Name,Download Link,Description,Demo/Reference,Category
+Face recognition for door unlock,MediaPipe FaceDetector.tflite,https://huggingface.co/qualcomm/MediaPipe-Face-Detection/blob/main/FaceDetector.tflite,Face detection TFLite model optimized for real-time recognition.,MediaPipe Face Detection,Indoor
+Multi-factor access (face + badge + gesture),Not Available,Not Available,No public TFLite model found for this scenario.,Not Available,Indoor
+Stranger alert (unknown person entry),SSD Lite MobileNet‑V1 Quantized (COCO),https://storage.googleapis.com/download.tensorflow.org/models/tflite/coco_ssd_mobilenet_v1_1.0_quant_2018_06_29.zip,"General object detection model, can detect people for stranger alerts.",TensorFlow sample model,Indoor
+Door/Window open detection,DoorOpenDetection TFLite model,https://github.com/hkrob/DoorOpenDetectionTFlite,Custom TFLite model trained via Teachable Machine to detect door open/closed states.,GitHub hkrob/DoorOpenDetectionTFlite,Indoor
+Package delivery detection (courier at door),Custom Object Detector (Model Maker),https://github.com/TannerGilbert/TFLite-Object-Detection-with-TFLite-Model-Maker,Custom-trained detector using EfficientDet-Lite models for package/person detection.,GitHub TannerGilbert/TFLite-Object-Detection-with-TFLite-Model-Maker,Indoor
+Fall detection (elderly care),Fall Detection Model (HuggingFace),https://huggingface.co/Siddhartha276/Fall_Detection/blob/main/fall_detection_model.tflite,TFLite model for recognizing elderly falls.,Hugging Face Siddhartha276,Indoor
+Heart-attack/abnormal motion alert,Not Available,Not Available,No public TFLite model found for this scenario.,Not Available,Indoor
+"Sleep pattern monitoring (restless sleep, apnea)",Not Available,Not Available,No public TFLite model found for this scenario.,Not Available,Indoor
+Cry detection (infants/kids),Not Available,Not Available,No public TFLite model found for this scenario.,Not Available,Indoor
+"Sudden collapse detection (seizures, faints)",Not Available,Not Available,No public TFLite model found for this scenario.,Not Available,Indoor
+Smoke/fire detection in kitchen,Fire Detection CNN (edwios),https://github.com/edwios/fire-detection-cnn-tflite,TensorFlow Lite CNN for fire/smoke detection.,GitHub edwios/fire-detection-cnn-tflite,Indoor
+Gas leakage detection,Not Available,Not Available,No public TFLite model found for this scenario.,Not Available,Indoor
+Stove/induction left-on detection,Not Available,Not Available,No public TFLite model found for this scenario.,Not Available,Indoor
+Short-circuit/sparking detection,Not Available,Not Available,No public TFLite model found for this scenario.,Not Available,Indoor
+Overheating appliance detection,Not Available,Not Available,No public TFLite model found for this scenario.,Not Available,Indoor
+Child unattended near balcony/window,Not Available,Not Available,No public TFLite model found for this scenario.,Not Available,Indoor
+"Pet activity monitoring (distress, unusual movement)",Not Available,Not Available,No public TFLite model found for this scenario.,Not Available,Indoor
+Elderly wandering at night,Not Available,Not Available,No public TFLite model found for this scenario.,Not Available,Indoor
+Intrusion alert during night mode,Anomaly Detection TFLite,https://github.com/francescogrillea/AnomalyDetectionTFLite,"Anomaly detection model using TensorFlow Lite, suitable for intrusion.",GitHub francescogrillea/AnomalyDetectionTFLite,Indoor
+"Smart occupancy monitoring (who is home, where)",Not Available,Not Available,No public TFLite model found for this scenario.,Not Available,Indoor
+Desk occupancy tracking,Not Available,Not Available,No public TFLite model found for this scenario.,Not Available,Indoor
+Meeting room utilization monitoring,Not Available,Not Available,No public TFLite model found for this scenario.,Not Available,Indoor
+People counting for co-working spaces,Not Available,Not Available,No public TFLite model found for this scenario.,Not Available,Indoor
+Employee posture/focus analysis,Not Available,Not Available,No public TFLite model found for this scenario.,Not Available,Indoor
+Safety gear detection in labs/indoor factories,Not Available,Not Available,No public TFLite model found for this scenario.,Not Available,Indoor
+Intrusion detection (perimeter breach),Not Available,Not Available,No public TFLite model found for this scenario.,Not Available,Outdoor
+Weapon detection (knife/gun),Not Available,Not Available,No public TFLite model found for this scenario.,Not Available,Outdoor
+Suspicious loitering alert,Not Available,Not Available,No public TFLite model found for this scenario.,Not Available,Outdoor
+Abandoned object detection (bag/package),Not Available,Not Available,No public TFLite model found for this scenario.,Not Available,Outdoor
+Crowd aggression detection,Not Available,Not Available,No public TFLite model found for this scenario.,Not Available,Outdoor
+ANPR (automatic number plate recognition),Not Available,Not Available,No public TFLite model found for this scenario.,Not Available,Outdoor
+Speeding vehicle detection,Not Available,Not Available,No public TFLite model found for this scenario.,Not Available,Outdoor
+Wrong-way driving detection,Not Available,Not Available,No public TFLite model found for this scenario.,Not Available,Outdoor
+Parking space occupancy detection,Not Available,Not Available,No public TFLite model found for this scenario.,Not Available,Outdoor
+"Vehicle type classification (car, truck, bike, EV)",Not Available,Not Available,No public TFLite model found for this scenario.,Not Available,Outdoor
+Gunshot detection (audio-visual fusion),Not Available,Not Available,No public TFLite model found for this scenario.,Not Available,Outdoor
+Glass-breaking sound detection,Not Available,Not Available,No public TFLite model found for this scenario.,Not Available,Outdoor
+Firework/explosion detection,Not Available,Not Available,No public TFLite model found for this scenario.,Not Available,Outdoor
+Crowd density monitoring (stampede risk),Not Available,Not Available,No public TFLite model found for this scenario.,Not Available,Outdoor
+Public protest/rally monitoring,Not Available,Not Available,No public TFLite model found for this scenario.,Not Available,Outdoor
+"PPE compliance (helmets, gloves, vests)",Not Available,Not Available,No public TFLite model found for this scenario.,Not Available,Outdoor
+Unsafe worker behavior detection,Not Available,Not Available,No public TFLite model found for this scenario.,Not Available,Outdoor
+Forklift/machine collision risk alerts,Not Available,Not Available,No public TFLite model found for this scenario.,Not Available,Outdoor
+Worker fatigue monitoring,Not Available,Not Available,No public TFLite model found for this scenario.,Not Available,Outdoor
+Smoke/fire at construction site,Not Available,Not Available,No public TFLite model found for this scenario.,Not Available,Outdoor
+Garbage overflow detection in bins,Not Available,Not Available,No public TFLite model found for this scenario.,Not Available,Outdoor
+Waterlogging/flood detection on roads,Not Available,Not Available,No public TFLite model found for this scenario.,Not Available,Outdoor
+Wild animal intrusion detection,Not Available,Not Available,No public TFLite model found for this scenario.,Not Available,Outdoor
+Streetlight outage detection,Not Available,Not Available,No public TFLite model found for this scenario.,Not Available,Outdoor
+"Weather anomaly detection (storm, heavy rain visual cues)",Not Available,Not Available,No public TFLite model found for this scenario.,Not Available,Outdoor

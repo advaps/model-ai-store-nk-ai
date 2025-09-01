@@ -5,13 +5,6 @@ import { useToast } from "@/components/ui/use-toast";
 import { GitHubModelService } from "@/utils/GitHubModelService";
 import { tfliteModelsData } from "@/data/tfliteModelsData";
 
-// Import preview images
-import yolorPreview from "@/assets/yolor-preview.jpg";
-import midasPreview from "@/assets/midas-preview.jpg";
-import blazeposePreview from "@/assets/blazepose-preview.jpg";
-import efficientdetPreview from "@/assets/efficientdet-preview.jpg";
-import selfieSegmentationPreview from "@/assets/selfie-segmentation-preview.jpg";
-
 interface ModelProps {
   name: string;
   description: string;
@@ -29,342 +22,125 @@ interface ModelProps {
   downloadUrl?: string;
   features?: string[];
   modelPath?: string;
+  demoReference?: string;
 }
 
-const allModels: ModelProps[] = [
-  // TFLite Models from CSV
-  ...tfliteModelsData,
-  
-  // Keep some existing models for variety
-  {
-    name: "Selfie Segmentation",
-    description: "Real-time person segmentation for video calls and filters",
-    rating: 4.7,
-    downloads: "890K",
-    category: "Segmentation",
-    updated: "1 day ago",
-    image: selfieSegmentationPreview,
-    size: "458KB",
-    detailedDescription: "MediaPipe Selfie Segmentation is a lightweight model that performs real-time person segmentation. It segments the prominent person in the scene from the background, perfect for video calls, AR filters, and background replacement applications.",
-    useCases: ["Video conferencing background blur", "AR selfie filters", "Real-time background replacement", "Portrait mode photography"],
-    videoUrl: "/c2pnet-demo.mp4",
-    githubUrl: "https://github.com/PINTO0309/PINTO_model_zoo/tree/main/006_selfie_segmentation",
-    downloadUrl: "/models/selfie_segmentation.tflite",
-    features: ["Real-time processing", "Lightweight architecture", "Mobile-optimized", "High accuracy segmentation"],
-    modelPath: "selfie_segmentation"
-  },
-  {
-    name: "Hand Recrop",
-    description: "Precise hand detection and cropping for gesture recognition",
-    rating: 4.5,
-    downloads: "650K",
-    category: "Indoor",
-    updated: "4 days ago",
-    image: "https://images.unsplash.com/photo-1559827260-dc66d52bef19?w=400&h=300&fit=crop",
-    size: "28MB",
-    detailedDescription: "Advanced hand detection and cropping model optimized for gesture recognition systems. Provides precise hand boundary detection and intelligent cropping for downstream gesture analysis.",
-    useCases: ["Gesture recognition systems", "Sign language interpretation", "Hand tracking applications", "Interactive interfaces"],
-    videoUrl: "https://sample-videos.com/zip/10/mp4/SampleVideo_1280x720_2mb.mp4",
-    githubUrl: "https://github.com/PINTO0309/PINTO_model_zoo/tree/main/hand_recrop",
-    features: ["High precision detection", "Multi-hand support", "Real-time processing", "Gesture-ready output"],
-    modelPath: "hand_recrop"
-  },
-  {
-    name: "Age Gender Recognition",
-    description: "Simultaneous age and gender estimation for indoor analytics",
-    rating: 4.6,
-    downloads: "750K",
-    category: "Indoor",
-    updated: "3 days ago",
-    image: "https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=400&h=300&fit=crop",
-    size: "12MB",
-    detailedDescription: "Multi-task deep learning model that simultaneously estimates age and gender from facial images. Optimized for indoor surveillance, retail analytics, and demographic analysis applications.",
-    useCases: ["Retail customer analytics", "Demographic studies", "Access control systems", "Marketing audience analysis"],
-    githubUrl: "https://github.com/PINTO0309/PINTO_model_zoo/tree/main/age_gender",
-    features: ["Dual-task architecture", "Robust to lighting conditions", "Fast inference", "Privacy-preserving design"]
-  },
-  {
-    name: "MediaPipe Meet Segmentation",
-    description: "Background segmentation optimized for video conferencing",
-    rating: 4.6,
-    downloads: "720K",
-    category: "Indoor",
-    updated: "2 days ago",
-    image: "https://images.unsplash.com/photo-1587825140708-dfaf72ae4b04?w=400&h=300&fit=crop",
-    size: "458KB",
-    detailedDescription: "Specialized background segmentation model designed for video conferencing applications. Provides precise person-background separation with low computational overhead.",
-    useCases: ["Video call background effects", "Virtual meeting rooms", "Privacy protection", "Professional broadcasting"],
-    videoUrl: "https://sample-videos.com/zip/10/mp4/SampleVideo_1280x720_1mb.mp4",
-    githubUrl: "https://huggingface.co/qualcomm/MediaPipe-Selfie-Segmentation",
-    downloadUrl: "/models/selfie_segmentation.tflite",
-    features: ["Meeting-optimized", "Low latency", "High quality segmentation", "Multi-platform support"],
-    modelPath: "meet_segmentation"
-  },
-  {
-    name: "RetinaFace",
-    description: "High-precision face detection for indoor security and recognition systems",
-    rating: 4.7,
-    downloads: "980K",
-    category: "Indoor",
-    updated: "2 days ago",
-    image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&h=300&fit=crop",
-    size: "45MB",
-    detailedDescription: "State-of-the-art face detection model with superior accuracy and robustness. Capable of detecting faces across various scales, poses, and occlusions in indoor environments.",
-    useCases: ["Security systems", "Access control", "Attendance tracking", "Face recognition pipelines"],
-    githubUrl: "https://github.com/PINTO0309/PINTO_model_zoo/tree/main/retinaface",
-    features: ["Multi-scale detection", "Robust to occlusion", "High precision", "Real-time performance"]
-  },
-  {
-    name: "BlazePose",
-    description: "Real-time human pose estimation for indoor fitness and motion tracking",
-    rating: 4.8,
-    downloads: "1.2M",
-    category: "Indoor",
-    updated: "1 day ago",
-    image: blazeposePreview,
-    size: "125MB",
-    detailedDescription: "MediaPipe BlazePose is a lightweight convolutional neural network architecture for human pose estimation. Designed for real-time inference with high accuracy for fitness and motion analysis.",
-    useCases: ["Fitness tracking", "Sports analysis", "Motion capture", "Yoga pose correction"],
-    videoUrl: "/c2pnet-demo.mp4",
-    githubUrl: "https://github.com/PINTO0309/PINTO_model_zoo/tree/main/003_posenet",
-    downloadUrl: "https://github.com/PINTO0309/PINTO_model_zoo/raw/main/003_posenet/blazepose.tflite",
-    features: ["33 keypoint detection", "Real-time performance", "Mobile optimized", "High accuracy tracking"],
-    modelPath: "003_posenet"
-  },
-  {
-    name: "OCR Japanese",
-    description: "Advanced Japanese text recognition for indoor document processing",
-    rating: 4.4,
-    downloads: "420K",
-    category: "Indoor",
-    updated: "5 days ago",
-    image: "https://images.unsplash.com/photo-1481627834876-b7833e8f5570?w=400&h=300&fit=crop",
-    size: "156MB"
-  },
-  {
-    name: "Hair Segmentation",
-    description: "Precise hair boundary detection for beauty and styling apps",
-    rating: 4.3,
-    downloads: "380K",
-    category: "Indoor",
-    updated: "6 days ago",
-    image: "https://images.unsplash.com/photo-1522337660859-02fbefca4702?w=400&h=300&fit=crop",
-    size: "67MB"
-  },
+// Use only the models from tfliteModelsData
+const allModels: ModelProps[] = tfliteModelsData;
 
-  // Outdoor Models (Prioritized - small size first)
-  {
-    name: "DroNet",
-    description: "Drone navigation and obstacle avoidance for outdoor flights",
-    rating: 4.6,
-    downloads: "820K",
-    category: "Outdoor",
-    updated: "3 days ago",
-    image: "https://images.unsplash.com/photo-1473968512647-3e447244af8f?w=400&h=300&fit=crop",
-    size: "18MB",
-    detailedDescription: "Lightweight deep learning model designed for autonomous drone navigation. Provides real-time obstacle avoidance and path planning for outdoor flight scenarios.",
-    useCases: ["Autonomous drone flight", "Obstacle avoidance", "Aerial photography", "Search and rescue operations"],
-    videoUrl: "https://user-images.githubusercontent.com/33194443/90954096-26e32180-e4a2-11ea-8e08-48e6b46e02b8.gif",
-    githubUrl: "https://github.com/PINTO0309/PINTO_model_zoo/tree/main/007_mobilenetv2-poseestimation",
-    downloadUrl: "https://github.com/PINTO0309/PINTO_model_zoo/raw/main/116_DroNet/dronet.tflite",
-    features: ["Lightweight architecture", "Real-time processing", "Robust outdoor performance", "Low power consumption"],
-    modelPath: "116_DroNet"
-  },
-  {
-    name: "Gaze Estimation ADAS",
-    description: "Driver attention monitoring for automotive safety systems",
-    rating: 4.6,
-    downloads: "450K",
-    category: "Outdoor",
-    updated: "5 days ago",
-    image: "https://images.unsplash.com/photo-1571741755707-5d25de3b6cb2?w=400&h=300&fit=crop",
-    size: "23MB",
-    detailedDescription: "Advanced driver assistance system (ADAS) model for monitoring driver attention and gaze direction. Critical for automotive safety and autonomous driving applications.",
-    useCases: ["Driver monitoring systems", "ADAS applications", "Automotive safety", "Fatigue detection"],
-    githubUrl: "https://github.com/PINTO0309/PINTO_model_zoo/tree/main/gaze_estimation",
-    features: ["Real-time gaze tracking", "Automotive-grade accuracy", "Robust to lighting", "Low computational overhead"]
-  },
-  {
-    name: "Ghost-free Shadow Removal",
-    description: "Remove shadows from outdoor images while preserving quality",
-    rating: 4.4,
-    downloads: "540K",
-    category: "Outdoor",
-    updated: "4 days ago",
-    image: "https://images.unsplash.com/photo-1502134249126-9f3755a50d78?w=400&h=300&fit=crop",
-    size: "78MB"
-  },
-  {
-    name: "3D Bounding Box Estimation",
-    description: "Autonomous driving 3D object detection for outdoor navigation",
-    rating: 4.8,
-    downloads: "1.1M",
-    category: "Outdoor",
-    updated: "1 day ago",
-    image: "https://images.unsplash.com/photo-1449824913935-59a10b8d2000?w=400&h=300&fit=crop",
-    size: "89MB"
-  },
-  {
-    name: "C2PNet",
-    description: "Physics-aware single image dehazing with contrastive regularization",
-    rating: 4.5,
-    downloads: "320K",
-    category: "Outdoor",
-    updated: "2 days ago",
-    image: "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=400&h=300&fit=crop",
-    size: "45MB",
-    detailedDescription: "Curricular Contrastive Regularization for Physics-aware Single Image Dehazing (CVPR 2023). Advanced dehazing model that uses contrastive learning and physics-based constraints to restore clear images from hazy outdoor scenes.",
-    useCases: ["Outdoor photography enhancement", "Surveillance in foggy conditions", "Autonomous driving visibility", "Aerial imaging clarity"],
-    videoUrl: "/c2pnet-demo.mp4",
-    githubUrl: "https://github.com/PINTO0309/PINTO_model_zoo/tree/main/368_C2PNet",
-    downloadUrl: "https://github.com/PINTO0309/PINTO_model_zoo/raw/main/368_C2PNet/c2pnet.tflite",
-    features: ["Physics-aware dehazing", "Contrastive regularization", "Real-time processing", "High quality restoration"],
-    modelPath: "368_C2PNet"
-  },
-  {
-    name: "Two-branch Dehazing",
-    description: "Clear outdoor images by removing haze and atmospheric effects",
-    rating: 4.3,
-    downloads: "390K",
-    category: "Outdoor",
-    updated: "6 days ago",
-    image: "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=400&h=300&fit=crop",
-    size: "92MB"
-  },
-  {
-    name: "MiDaS v2",
-    description: "Monocular depth estimation for outdoor scene understanding",
-    rating: 4.9,
-    downloads: "1.5M",
-    category: "Outdoor",
-    updated: "1 day ago",
-    image: midasPreview,
-    size: "66.3MB",
-    detailedDescription: "Intel's MiDaS v2 model for monocular depth estimation. Computes relative inverse depth from a single image with high accuracy and robustness.",
-    useCases: ["Autonomous driving", "3D scene reconstruction", "AR/VR applications", "Robotics navigation"],
-    githubUrl: "https://github.com/isl-org/MiDaS",
-    downloadUrl: "https://huggingface.co/qualcomm/Midas-V2/resolve/main/Midas-V2.tflite",
-    features: ["Monocular depth estimation", "Robust to various scenes", "Real-time inference", "High accuracy"],
-    modelPath: "midas_v2"
-  },
-  {
-    name: "SFA3D",
-    description: "3D object detection for autonomous driving scenarios",
-    rating: 4.5,
-    downloads: "670K",
-    category: "Outdoor",
-    updated: "3 days ago",
-    image: "https://images.unsplash.com/photo-1449965408869-eaa3f722e40d?w=400&h=300&fit=crop",
-    size: "134MB"
-  },
-  {
-    name: "YOLOR",
-    description: "Real-time object detection optimized for outdoor surveillance",
-    rating: 4.7,
-    downloads: "1.3M",
-    category: "Outdoor",
-    updated: "2 days ago",
-    image: yolorPreview,
-    size: "245MB"
-  }
-];
-
+// Top Models - select from both Indoor and Outdoor categories
 const topModels: ModelProps[] = [
   {
-    name: "YOLOR",
-    description: "State-of-the-art real-time object detection with exceptional accuracy",
-    rating: 4.9,
-    downloads: "2.8M",
-    category: "Top Models",
-    updated: "1 day ago",
-    image: yolorPreview,
-    size: "245MB",
-    featured: true,
-    modelPath: "123_YOLOR"
-  },
-  {
-    name: "MiDaS v2",
-    description: "Industry-leading monocular depth estimation model",
-    rating: 4.9,
-    downloads: "2.5M",
-    category: "Top Models",
-    updated: "1 day ago",
-    image: midasPreview,
-    size: "66.3MB",
-    featured: true,
-    detailedDescription: "Intel's MiDaS v2 model for monocular depth estimation. Computes relative inverse depth from a single image with high accuracy and robustness.",
-    useCases: ["Autonomous driving", "3D scene reconstruction", "AR/VR applications", "Robotics navigation"],
-    githubUrl: "https://github.com/isl-org/MiDaS",
-    downloadUrl: "https://huggingface.co/qualcomm/Midas-V2/resolve/main/Midas-V2.tflite",
-    features: ["Monocular depth estimation", "Robust to various scenes", "Real-time inference", "High accuracy"],
-    modelPath: "midas_v2"
-  },
-  {
-    name: "BlazePose",
-    description: "Most popular real-time human pose estimation model",
-    rating: 4.8,
-    downloads: "2.2M",
-    category: "Top Models",
-    updated: "1 day ago",
-    image: blazeposePreview,
-    size: "2.3GB",
-    featured: true,
-    modelPath: "003_posenet"
-  },
-  {
-    name: "EfficientDet Lite",
-    description: "Lightweight object detection optimized for mobile devices",
-    rating: 4.7,
-    downloads: "1.9M",
-    category: "Top Models",
-    updated: "2 days ago",
-    image: efficientdetPreview,
-    size: "45MB",
-    modelPath: "103_EfficientDet_lite"
-  },
-  {
-    name: "RetinaNet",
-    description: "High-performance focal loss based object detection",
-    rating: 4.8,
-    downloads: "1.7M",
-    category: "Top Models",
-    updated: "2 days ago",
-    image: "https://images.unsplash.com/photo-1516116216624-53e697fedbea?w=400&h=300&fit=crop",
-    size: "125MB",
-    modelPath: "073_RetinaNet"
-  },
-  {
-    name: "MoveNet",
-    description: "Ultra-fast pose estimation for fitness and sports applications",
-    rating: 4.6,
-    downloads: "1.4M",
-    category: "Top Models",
-    updated: "3 days ago",
-    image: "https://images.unsplash.com/photo-1517836357463-d25dfeac3438?w=400&h=300&fit=crop",
-    size: "8.7MB",
-    modelPath: "movenet"
-  },
-  {
-    name: "NanoDet",
-    description: "Super lightweight object detection for edge devices",
+    name: "MediaPipe FaceDetector",
+    description: "Face detection TFLite model optimized for real-time recognition.",
     rating: 4.5,
+    downloads: "850K",
+    category: "Top Models",
+    updated: "1 day ago",
+    image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&h=300&fit=crop",
+    size: "2.1MB",
+    featured: true,
+    detailedDescription: "Face detection TFLite model optimized for real-time recognition.",
+    useCases: ["Face recognition for door unlock", "Security systems", "Access control", "Biometric authentication"],
+    features: ["Real-time detection", "High accuracy", "Mobile optimized", "Lightweight"],
+    githubUrl: "https://huggingface.co/qualcomm/MediaPipe-Face-Detection",
+    demoReference: "MediaPipe Face Detection"
+  },
+  {
+    name: "SSD Lite MobileNet-V1 Quantized (COCO)",
+    description: "General object detection model, can detect people for stranger alerts.",
+    rating: 4.4,
     downloads: "1.1M",
     category: "Top Models",
-    updated: "4 days ago",
-    image: "https://images.unsplash.com/photo-1485827404703-89b55fcc595e?w=400&h=300&fit=crop",
-    size: "1.8MB",
-    modelPath: "072_NanoDet"
+    updated: "2 days ago",
+    image: "https://images.unsplash.com/photo-1449965408869-eaa3f722e40d?w=400&h=300&fit=crop",
+    size: "18MB",
+    featured: true,
+    detailedDescription: "General object detection model, can detect people for stranger alerts.",
+    useCases: ["Stranger alert (unknown person entry)", "Object detection", "Surveillance", "Security systems"],
+    features: ["Real-time detection", "Multi-object support", "High precision", "Robust performance"],
+    githubUrl: null,
+    demoReference: "TensorFlow sample model"
   },
   {
-    name: "ESRGAN",
-    description: "Enhanced super-resolution for high-quality image upscaling",
-    rating: 4.7,
-    downloads: "980K",
+    name: "Fall Detection Model",
+    description: "TFLite model for recognizing elderly falls.",
+    rating: 4.6,
+    downloads: "680K",
     category: "Top Models",
-    updated: "5 days ago",
-    image: "https://images.unsplash.com/photo-1547036967-23d11aacaee0?w=400&h=300&fit=crop",
-    size: "67MB",
-    modelPath: "esrgan"
+    updated: "2 days ago",
+    image: "https://images.unsplash.com/photo-1571741755707-5d25de3b6cb2?w=400&h=300&fit=crop",
+    size: "12MB",
+    featured: true,
+    detailedDescription: "TFLite model for recognizing elderly falls.",
+    useCases: ["Fall detection (elderly care)", "Healthcare monitoring", "Safety systems", "Elderly care"],
+    features: ["Fall detection", "Real-time monitoring", "High accuracy", "Healthcare focused"],
+    githubUrl: "https://huggingface.co/Siddhartha276/Fall_Detection",
+    demoReference: "Hugging Face Siddhartha276"
+  },
+  {
+    name: "Fire Detection CNN",
+    description: "TensorFlow Lite CNN for fire/smoke detection.",
+    rating: 4.4,
+    downloads: "520K",
+    category: "Top Models",
+    updated: "4 days ago",
+    image: "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=400&h=300&fit=crop",
+    size: "8MB",
+    featured: true,
+    detailedDescription: "TensorFlow Lite CNN for fire/smoke detection.",
+    useCases: ["Smoke/fire detection in kitchen", "Fire safety", "Surveillance", "Emergency detection"],
+    features: ["CNN architecture", "Fire/smoke detection", "Real-time monitoring", "High accuracy"],
+    githubUrl: "https://github.com/edwios/fire-detection-cnn-tflite",
+    demoReference: "GitHub edwios/fire-detection-cnn-tflite"
+  },
+  {
+    name: "Anomaly Detection TFLite",
+    description: "Anomaly detection model using TensorFlow Lite, suitable for intrusion.",
+    rating: 4.3,
+    downloads: "380K",
+    category: "Top Models",
+    updated: "1 week ago",
+    image: "https://images.unsplash.com/photo-1449965408869-eaa3f722e40d?w=400&h=300&fit=crop",
+    size: "22MB",
+    featured: true,
+    detailedDescription: "Anomaly detection model using TensorFlow Lite, suitable for intrusion.",
+    useCases: ["Intrusion alert during night mode", "Anomaly detection", "Security systems", "Surveillance"],
+    features: ["Anomaly detection", "Intrusion detection", "Real-time monitoring", "High accuracy"],
+    githubUrl: "https://github.com/francescogrillea/AnomalyDetectionTFlite",
+    demoReference: "GitHub francescogrillea/AnomalyDetectionTFlite"
+  },
+  {
+    name: "DoorOpenDetection TFLite",
+    description: "Custom TFLite model trained via Teachable Machine to detect door open/closed states.",
+    rating: 4.2,
+    downloads: "320K",
+    category: "Top Models",
+    updated: "1 week ago",
+    image: "https://images.unsplash.com/photo-1559827260-dc66d52bef19?w=400&h=300&fit=crop",
+    size: "15MB",
+    featured: true,
+    detailedDescription: "Custom TFLite model trained via Teachable Machine to detect door open/closed states.",
+    useCases: ["Door/Window open detection", "Security monitoring", "Home automation", "Access control"],
+    features: ["Custom trained", "Binary classification", "Real-time detection", "Easy integration"],
+    githubUrl: "https://github.com/hkrob/DoorOpenDetectionTFlite",
+    demoReference: "GitHub hkrob/DoorOpenDetectionTFlite"
+  },
+  {
+    name: "Custom Object Detector (Model Maker)",
+    description: "Custom-trained detector using EfficientDet-Lite models for package/person detection.",
+    rating: 4.3,
+    downloads: "450K",
+    category: "Top Models",
+    updated: "3 days ago",
+    image: "https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=400&h=300&fit=crop",
+    size: "25MB",
+    featured: true,
+    detailedDescription: "Custom-trained detector using EfficientDet-Lite models for package/person detection.",
+    useCases: ["Package delivery detection (courier at door)", "Object detection", "Surveillance", "Security systems"],
+    features: ["Custom trained", "EfficientDet-Lite based", "High accuracy", "Real-time detection"],
+    githubUrl: "https://github.com/TannerGilbert/TFLite-Object-Detection-with-TFLite-Model-Maker",
+    demoReference: "GitHub TannerGilbert/TFLite-Object-Detection-with-TFLite-Model-Maker"
   }
 ];
 
@@ -399,7 +175,8 @@ const ModelGrid = ({ activeTab, searchQuery }: ModelGridProps) => {
       return models.filter(model => 
         model.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
         model.description.toLowerCase().includes(searchQuery.toLowerCase()) ||
-        model.category.toLowerCase().includes(searchQuery.toLowerCase())
+        model.category.toLowerCase().includes(searchQuery.toLowerCase()) ||
+        (model.demoReference && model.demoReference.toLowerCase().includes(searchQuery.toLowerCase()))
       );
     }
 
