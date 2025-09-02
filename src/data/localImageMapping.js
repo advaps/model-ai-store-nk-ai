@@ -2,7 +2,6 @@
 import faceDetectionAi from "@/assets/face-detection-ai.jpg";
 import multifactorAccessFixed from "@/assets/multifactor-access-fixed.jpg";
 import objectDetectionCoco from "@/assets/object-detection-coco.jpg";
-import doorOpenDetection from "@/assets/dooropendetection-tflite.jpg";
 import packageDeliveryDetection from "@/assets/package-delivery-detection.jpg";
 import fallDetectionHealthcare from "@/assets/fall-detection-healthcare.jpg";
 import heartAttackDetection from "@/assets/heart-attack-detection.jpg";
@@ -31,86 +30,86 @@ import heroAi from "@/assets/hero-ai.jpg";
 import mediapipeDemo from "@/assets/mediapipe_demo.mp4";
 import numberPlateRecognitionGif from "@/assets/number_plate_recognition.gif";
 
-// Import scenario images - converted from PNG to JPEG
-import doorOpenDetect from "@/assets/door-open-detect.jpg";
-import fireDetect from "@/assets/fire-detect.jpg";
-import stoveInduction from "@/assets/stove-induction.jpg";
-import shortCircuit from "@/assets/short-circuit.jpg";
-import overheatingApp from "@/assets/overheating-app.jpg";
-import childUnattended from "@/assets/child-unattended.jpg";
-import elderlyWandering from "@/assets/elderly-wandering.jpg";
-import anomalyDetection from "@/assets/anomaly-detection.jpg";
-import deskOccupancy from "@/assets/desk-occupancy.jpg";
-import meetingRoomUtilization from "@/assets/meeting-room-utilization.jpg";
-import peopleCounting from "@/assets/people-counting.jpg";
-import employeePosture from "@/assets/employee-posture.jpg";
-import suspiciousBehavior from "@/assets/suspicious-behavior.jpg";
-import crowdAggressionDetection from "@/assets/crowd-aggression-detection.jpg";
-import parkingSpaceOccupancy from "@/assets/parking-space-occupancy.jpg";
-import glassBreakingSound from "@/assets/glass-breaking-sound.jpg";
-import fireworkExplosion from "@/assets/firework-explosion.jpg";
-import crowdDensity from "@/assets/crowd-density.jpg";
-import publicProtest from "@/assets/public-protest.jpg";
-import unsafeWorker from "@/assets/unsafe-worker.jpg";
-import forkliftMachineCollision from "@/assets/forklift-machine-collision.jpg";
-import smokeFireDetection from "@/assets/smoke-fire-detection.jpg";
-import garbageOverflow from "@/assets/garbage-overflow.jpg";
-import streetlightOutageDetection from "@/assets/streetlight-outage-detection.jpg";
+// Import unique images for each specific model
+import doorOpenDetectionUnique from "@/assets/door-open-detection-unique.jpg";
+import fireDetectionAiUnique from "@/assets/fire-detection-ai-unique.jpg";
+import stoveMonitoringUnique from "@/assets/stove-monitoring-unique.jpg";
+import shortCircuitDetectionUnique from "@/assets/short-circuit-detection-unique.jpg";
+import overheatingDetectionUnique from "@/assets/overheating-detection-unique.jpg";
+import childSafetyMonitoringUnique from "@/assets/child-safety-monitoring-unique.jpg";
+import elderlyTrackingUnique from "@/assets/elderly-tracking-unique.jpg";
+import anomalyAiDetectionUnique from "@/assets/anomaly-ai-detection-unique.jpg";
+import deskTrackingUnique from "@/assets/desk-tracking-unique.jpg";
+import meetingRoomAnalyticsUnique from "@/assets/meeting-room-analytics-unique.jpg";
+import peopleCounterUnique from "@/assets/people-counter-unique.jpg";
+import postureAnalysisUnique from "@/assets/posture-analysis-unique.jpg";
+import suspiciousActivityUnique from "@/assets/suspicious-activity-unique.jpg";
+import crowdViolenceDetectionUnique from "@/assets/crowd-violence-detection-unique.jpg";
+import parkingSensorsUnique from "@/assets/parking-sensors-unique.jpg";
+import glassBreakSoundUnique from "@/assets/glass-break-sound-unique.jpg";
+import fireworkBlastDetectionUnique from "@/assets/firework-blast-detection-unique.jpg";
+import crowdFlowAnalysisUnique from "@/assets/crowd-flow-analysis-unique.jpg";
+import protestMonitoringUnique from "@/assets/protest-monitoring-unique.jpg";
+import workerSafetyViolationsUnique from "@/assets/worker-safety-violations-unique.jpg";
+import forkliftCollisionPreventionUnique from "@/assets/forklift-collision-prevention-unique.jpg";
+import industrialSmokeDetectionUnique from "@/assets/industrial-smoke-detection-unique.jpg";
+import wasteOverflowDetectionUnique from "@/assets/waste-overflow-detection-unique.jpg";
+import streetlightMonitoringUnique from "@/assets/streetlight-monitoring-unique.jpg";
 
-// Local image mapping for all 50 TFLite models
+// Local image mapping for all 50 TFLite models - Each model has a unique image
 export const localImageMapping = {
   // Indoor Models
   "MediaPipe FaceDetector": faceDetectionAi,
   "Multi-factor Access System": multifactorAccessFixed,
   "SSD Lite MobileNet-V1 Quantized (COCO)": objectDetectionCoco,
-  "DoorOpenDetection TFLite": doorOpenDetection,
+  "DoorOpenDetection TFLite": doorOpenDetectionUnique,
   "Custom Object Detector (Model Maker)": packageDeliveryDetection,
   "Fall Detection Model": fallDetectionHealthcare,
   "Heart-attack/Abnormal Motion Alert": heartAttackDetection,
   "Sleep Pattern Monitoring": sleepPatternMonitoring,
   "Cry Detection": babyCryDetection,
   "Sudden Collapse Detection": suddenCollapseDetection,
-  "Fire Detection CNN": fireDetect,
+  "Fire Detection CNN": fireDetectionAiUnique,
   "Gas Leakage Detection": gasLeakDetectionFixed,
-  "Stove/Induction Left-on Detection": stoveInduction,
-  "Short-circuit/Sparking Detection": shortCircuit,
-  "Overheating Appliance Detection": overheatingApp,
-  "Child Unattended Detection": childUnattended,
+  "Stove/Induction Left-on Detection": stoveMonitoringUnique,
+  "Short-circuit/Sparking Detection": shortCircuitDetectionUnique,
+  "Overheating Appliance Detection": overheatingDetectionUnique,
+  "Child Unattended Detection": childSafetyMonitoringUnique,
   "Pet Activity Monitoring": petMonitoringFixed,
-  "Elderly Wandering Detection": elderlyWandering,
-  "Anomaly Detection TFLite": anomalyDetection,
+  "Elderly Wandering Detection": elderlyTrackingUnique,
+  "Anomaly Detection TFLite": anomalyAiDetectionUnique,
   "Smart Occupancy Monitoring": occupancyMonitoringFixed,
-  "Desk Occupancy Tracking": deskOccupancy,
-  "Meeting Room Utilization Monitoring": meetingRoomUtilization,
-  "People Counting for Co-working Spaces": peopleCounting,
-  "Employee Posture/Focus Analysis": employeePosture,
+  "Desk Occupancy Tracking": deskTrackingUnique,
+  "Meeting Room Utilization Monitoring": meetingRoomAnalyticsUnique,
+  "People Counting for Co-working Spaces": peopleCounterUnique,
+  "Employee Posture/Focus Analysis": postureAnalysisUnique,
   "Safety Gear Detection": safetyGearDetectionUnique,
   
   // Outdoor Models
   "Intrusion Detection (Perimeter Breach)": perimeterSecurity,
   "Weapon Detection": weaponDetectionSecurity,
-  "Suspicious Loitering Alert": suspiciousBehavior,
+  "Suspicious Loitering Alert": suspiciousActivityUnique,
   "Abandoned Object Detection": abandonedObjectDetection,
-  "Crowd Aggression Detection": crowdAggressionDetection,
+  "Crowd Aggression Detection": crowdViolenceDetectionUnique,
   "ANPR (Automatic Number Plate Recognition)": vehicleDetectionTraffic,
   "Speeding Vehicle Detection": speedingVehicleDetection,
   "Wrong-way Driving Detection": wrongWayDrivingDetection,
-  "Parking Space Occupancy Detection": parkingSpaceOccupancy,
+  "Parking Space Occupancy Detection": parkingSensorsUnique,
   "Vehicle Type Classification": vehicleTypeClassification,
   "Gunshot Detection": gunshotAcousticDetection,
-  "Glass-breaking Sound Detection": glassBreakingSound,
-  "Firework/Explosion Detection": fireworkExplosion,
-  "Crowd Density Monitoring": crowdDensity,
-  "Public Protest/Rally Monitoring": publicProtest,
-  "PPE Compliance Detection": safetyGearDetectionUnique, // Using safety gear detection image
-  "Unsafe Worker Behavior Detection": unsafeWorker, // Using unsafe worker image
-  "Forklift/Machine Collision Risk Alerts": forkliftMachineCollision,
+  "Glass-breaking Sound Detection": glassBreakSoundUnique,
+  "Firework/Explosion Detection": fireworkBlastDetectionUnique,
+  "Crowd Density Monitoring": crowdFlowAnalysisUnique,
+  "Public Protest/Rally Monitoring": protestMonitoringUnique,
+  "PPE Compliance Detection": safetyGearDetectionUnique,
+  "Unsafe Worker Behavior Detection": workerSafetyViolationsUnique,
+  "Forklift/Machine Collision Risk Alerts": forkliftCollisionPreventionUnique,
   "Worker Fatigue Monitoring": workerFatigueFixed,
-  "Smoke/Fire at Construction Site": smokeFireDetection, // Using smoke fire detection image
-  "Garbage Overflow Detection": garbageOverflow,
+  "Smoke/Fire at Construction Site": industrialSmokeDetectionUnique,
+  "Garbage Overflow Detection": wasteOverflowDetectionUnique,
   "Waterlogging/Flood Detection": waterloggingFloodDetectionUnique,
   "Wild Animal Intrusion Detection": wildAnimalIntrusion,
-  "Streetlight Outage Detection": streetlightOutageDetection,
+  "Streetlight Outage Detection": streetlightMonitoringUnique,
   "Weather Anomaly Detection": weatherAnomalyDetectionUnique
 };
 
