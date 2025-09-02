@@ -64,7 +64,7 @@ export const tfliteModelsData = [
     videoUrl: "https://www.youtube.com/watch?v=C78xM7tV_t0",
     downloadUrl: "https://storage.googleapis.com/download.tensorflow.org/models/tflite/coco_ssd_mobilenet_v1_1.0_quant_2018_06_29.zip",
     rating: 4.4,
-    downloads: "8,
+    downloads: "8",
     category: "Indoor",
     updated: "2 days ago",
     size: "18MB",
